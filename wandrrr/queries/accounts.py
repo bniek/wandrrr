@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr
+from queries.pool import pool
 
-class User(BaseModel):
+class CreateUser(BaseModel):
     fullname: str
     email : EmailStr
     password : str
