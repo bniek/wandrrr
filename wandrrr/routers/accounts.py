@@ -18,6 +18,10 @@ from queries.accounts import (
     DuplicateAccountError,
 )
 
+class AccountForm(BaseModel):
+    username: str
+    password: str
+
 class AccountToken(Token):
     account: AccountOut
 
@@ -63,23 +67,20 @@ async def get_token(
 
 
 @router.post("/wandrrrs/accounts")
-def create_account(
+async def create_account(
     info: AccountIn,
-    accounts: AccountRepo = Depends(),
-) ->AccountOut:
+    request: Request,
+    response: Response,
+    repo: AccountRepo = Depends(),
+):
     hashed_password = authenticator.hash_password(info.password)
-    ar = AccountIn(
-        first_name=info.first_name,
-        last_name=info.last_name,
-        username=info.username,
-        email=info.email,
-        password=info.password,
-        )
     try:
-        id = accounts.CreateUser(ar, hashed_password)
+        account = repo.CreateUser(info, hashed_password)
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Already exists, cannot create an account with those credentials",
+            detail="Cannot create an account with those credentials",
         )
-    return accounts.get_user_by_id(id)
+    form = AccountForm(username=info.username, password=info.password)
+    token = await authenticator.login(response, request, form, repo)
+    return AccountToken(account=account, **token.dict())

@@ -41,7 +41,7 @@ class AccountRepo(BaseModel):
 
                 )
                 id = db.fetchone()[0]
-        return self.account_in_to_out(id=id)
+                return self.account_in_to_out(id, accounts, hashed_password)
 
     def get_user_by_id(self, id: str) ->AccountOut:
         with pool.connection() as conn:
@@ -80,10 +80,9 @@ class AccountRepo(BaseModel):
                     """
                     SELECT id, first_name, last_name, username, email, hashed_password
                     FROM accounts
-                    WHERE email =%s
-                    username =%s;
+                    WHERE username =%s;
                     """,
-                    [email, email]
+                    [username]
                 )
                 record = db.fetchone()
                 if record is None:
@@ -101,6 +100,6 @@ class AccountRepo(BaseModel):
                     except Exception as e:
                         raise Exception("Error", e)
 
-    def account_in_to_out(self, id: int, accounts: AccountIn):
+    def account_in_to_out(self, id: int, accounts: AccountIn, hashed_password: str):
         old_data = accounts.dict()
-        return AccountOut(id=id, **old_data)
+        return AccountOut(id=id, hashed_password=hashed_password, **old_data)
