@@ -1,6 +1,7 @@
-#from queries.journal_entries import
+from queries.journal_entries import PostIn
 from fastapi import APIRouter, Depends
 from auth.auth_bearer import JWTBearer
+from queries.journal_entries import PostIn, WandrrrRepository
 
 router = APIRouter()
 
@@ -38,6 +39,9 @@ def edit_post(id : int):
 def delete_post(id : int):
     return()
 
-@router.post("/wandrrrs/", dependencies=[Depends(JWTBearer())])
-def create_post():
-    return()
+@router.post("/wandrrrs/")
+def create_post(
+    post: PostIn,
+    repo: WandrrrRepository = Depends()
+):
+    return repo.create(post)
