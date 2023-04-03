@@ -14,7 +14,7 @@ services:
     volumes:
       - ./wandrrr:/app
     environment:
-      SIGNING_KEY:
+      SIGNING_KEY: secret_key
       DATABASE_URL: postgresql://wandrrr:password@postgres/wandrrr
       WAIT_HOSTS: postgres:5432
       WAIT_BEFORE: 5

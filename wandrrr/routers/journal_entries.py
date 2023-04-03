@@ -1,22 +1,17 @@
-#from queries.journal_entries import
-from fastapi import APIRouter, Depends
-from auth.auth_bearer import JWTBearer
+from fastapi import APIRouter, Depends, Response
+from queries.journal_entries import PostIn, PostOut, WandrrrRepository
+from typing import List, Optional, Union
+from auth import authenticator
 
 router = APIRouter()
 
+# def check_user(data: UserLogin):
+#     for user in username:
+#         if user.email == data.email and user.password == data.password:
+#             return True
+#     return False
 
-post = [
-    {
-        "id": 1,
-        "title": "title1",
-        "location": "location1"
-    },
-    {
-        "id": 2,
-        "title": "title2",
-        "location": "location2"
-    }
-]
+
 
 @router.get("/wandrrrs/", tags=["post"])
 def get_list():
@@ -24,12 +19,20 @@ def get_list():
             "data": post
       }
 
-@router.get("/wandrrrs/{id}", tags=["post"])
-def get_post(id : int):
+@router.get("/wandrrrs/{wandrrrs_id}", response_model=Optional[PostOut], )
+def get_post(
+     wandrrrs_id : int,
+     response: Response,
+     repo: WandrrrRepository = Depends(),
+) -> PostOut:
+    wandrrr_post = repo.get_one(wandrrrs_id)
+    if wandrrr_post is None:
+        response.status_code = 404
+    return wandrrr_post
 
-        return {
-            "data": post
-        }
+
+
+
 @router.put("/wandrrrs/{id}")
 def edit_post(id : int):
     return()
@@ -38,6 +41,6 @@ def edit_post(id : int):
 def delete_post(id : int):
     return()
 
-@router.post("/wandrrrs/", dependencies=[Depends(JWTBearer())])
+@router.post("/wandrrrs/", )
 def create_post():
     return()
