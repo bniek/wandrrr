@@ -40,6 +40,9 @@ def delete_post(
 ) -> bool:
     return repo.delete(wandrrrs_id)
 
-# @router.post("/wandrrrs/", dependencies=[Depends(JWTBearer())])
-# def create_post():
-#     return()
+@router.post("/wandrrrs/")
+def create_post(
+    post: PostIn,
+    repo: WandrrrRepository = Depends()
+):
+    return repo.create(post)
