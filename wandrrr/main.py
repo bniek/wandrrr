@@ -1,11 +1,14 @@
 from fastapi import FastAPI
+from auth.authenticator import authenticator
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from routers import accounts, journal_entries
 
 app = FastAPI()
+app.include_router(authenticator.router)
 app.include_router(accounts.router)
 app.include_router(journal_entries.router)
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,6 +19,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 # @app.get("/api/launch-details")
