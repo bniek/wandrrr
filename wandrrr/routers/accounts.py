@@ -30,6 +30,24 @@ class HttpError(BaseModel):
 
 router = APIRouter()
 
+@router.get("/api/protected", response_model=bool)
+async def get_protected(
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    return True
+
+@router.get("/token", response_model=AccountToken | None)
+async def get_token(
+    request: Request,
+    account: AccountOut = Depends(authenticator.try_get_current_account_data)
+) -> AccountToken | None:
+    if account and authenticator.cookie_name in request.cookies:
+        return {
+            "access_token": request.cookies[authenticator.cookie_name],
+            "type": "Bearer",
+            "account": account,
+        }
+
 not_authorized = HTTPException(
     status_code=status.HTTP_401_UNAUTHORIZED,
     detail="Invalid authentication credentials",
@@ -49,21 +67,6 @@ def get_user(
         )
     else:
         return account
-
-@router.get("/token")
-async def get_token(
-    request: Request,
-    account_data : dict
-    | None = Depends(authenticator.get_account_data),
-     accounts: AccountRepo = Depends(),
-     ra=Depends(authenticator.get_account_data),
- )-> AccountToken:
-    account = await get_user(account_data["id"], accounts=accounts, ra=ra)
-    return {
-        "access_token": request.cookies[authenticator.cookie_name],
-        "type": "Bearer",
-        "account": account,
-    }
 
 
 @router.post("/wandrrrs/accounts")
