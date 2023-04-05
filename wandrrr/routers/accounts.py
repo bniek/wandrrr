@@ -44,7 +44,8 @@ async def get_protected(
     wandrrrs: WandrrrRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    return wandrrrs.get_all()
+    owner_id = account_data['id']
+    return wandrrrs.get_all(owner_id=owner_id)
 
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
@@ -64,19 +65,20 @@ not_authorized = HTTPException(
     headers={"WWW-Authenticate":"Bearer"}
 )
 
-@router.get("wandrrr/user/{id}")
-def get_user(
-    id: int,
-    accounts: AccountRepo = Depends(),
-    ra=Depends(authenticator.get_account_data),
-)-> AccountOut:
-    account = accounts.get_user_by_id(username=id)
-    if not account:
-        raise HTTPException(
-            status.HTTP_400_BAD_REQUEST, detail = "Account does not exist"
-        )
-    else:
-        return account
+# Need clarify what this chunk of code is trying to do. And try to debug it for its intended usage
+# @router.get("/wandrrr/user/{id}")
+# def get_user(
+#     id: int,
+#     accounts: AccountRepo = Depends(),
+#     ra=Depends(authenticator.get_account_data),
+# )-> AccountOut:
+#     account = accounts.get_user_by_id(id=id)
+#     if not account:
+#         raise HTTPException(
+#             status.HTTP_400_BAD_REQUEST, detail = "Account does not exist"
+#         )
+#     else:
+#         return account
 
 
 @router.post("/wandrrrs/accounts")
