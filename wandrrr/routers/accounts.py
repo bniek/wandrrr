@@ -39,7 +39,7 @@ class HttpError(BaseModel):
 
 router = APIRouter()
 
-@router.get("/api/wandrrrs", response_model=Union[List[PostOut], Error])
+@router.get("/wandrrrs/protected", response_model=Union[List[PostOut], Error])
 async def get_protected(
     wandrrrs: WandrrrRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
