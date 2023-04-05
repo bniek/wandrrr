@@ -10,12 +10,21 @@ from fastapi import (
 from jwtdown_fastapi.authentication import Token
 from auth.authenticator import authenticator
 from pydantic import BaseModel
+from typing import List, Optional, Union
+
 
 from queries.accounts import (
     AccountIn,
     AccountOut,
     AccountRepo,
     DuplicateAccountError,
+)
+
+from queries.journal_entries import (
+    Error,
+    PostIn,
+    PostOut,
+    WandrrrRepository,
 )
 
 class AccountForm(BaseModel):
@@ -30,11 +39,12 @@ class HttpError(BaseModel):
 
 router = APIRouter()
 
-@router.get("/api/protected", response_model=bool)
+@router.get("/api/wandrrrs", response_model=Union[List[PostOut], Error])
 async def get_protected(
+    wandrrrs: WandrrrRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    return True
+    return wandrrrs.get_all()
 
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
