@@ -7,6 +7,7 @@ class Error(BaseModel):
     message: str
 
 class PostIn(BaseModel):
+    owner_id: int
     title: str
     start_date: date
     end_date: date
@@ -26,6 +27,7 @@ class PostIn(BaseModel):
 
 class PostOut(BaseModel):
     wandrrrs_id: int
+    owner_id: int
     title: str
     start_date: date
     end_date: date
@@ -44,34 +46,62 @@ class PostOut(BaseModel):
     rating: int
 
 class WandrrrRepository:
-    def get_all(self) -> Union[Error, List[PostOut]]:
+    def get_all(self, owner_id: Optional[int] = None) -> Union[Error, List[PostOut]]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    result = db.execute(
+                    if owner_id is not None:
+                        query = """
+                            SELECT
+                                wandrrrs_id,
+                                owner_id,
+                                title,
+                                start_date,
+                                end_date,
+                                location,
+                                description,
+                                mood,
+                                companion,
+                                companion_dropdown,
+                                weather,
+                                photos01,
+                                photos02,
+                                photos03,
+                                photos04,
+                                photos05,
+                                timestamp,
+                                rating
+                            FROM wandrrrs
+                            WHERE owner_id = %s
+                            ORDER BY timestamp;
                         """
-                        SELECT
-                            wandrrrs_id,
-                            title,
-                            start_date,
-                            end_date,
-                            location,
-                            description,
-                            mood,
-                            companion,
-                            companion_dropdown,
-                            weather,
-                            photos01,
-                            photos02,
-                            photos03,
-                            photos04,
-                            photos05,
-                            timestamp,
-                            rating
-                        FROM wandrrrs
-                        ORDER BY timestamp;
+                        result = db.execute(query, (owner_id,))
+                    else:
+                        query = """
+                            SELECT
+                                wandrrrs_id,
+                                owner_id,
+                                title,
+                                start_date,
+                                end_date,
+                                location,
+                                description,
+                                mood,
+                                companion,
+                                companion_dropdown,
+                                weather,
+                                photos01,
+                                photos02,
+                                photos03,
+                                photos04,
+                                photos05,
+                                timestamp,
+                                rating
+                            FROM wandrrrs
+                            ORDER BY timestamp;
                         """
-                    )
+                        result = db.execute(query)
+
                     return [
                         self.record_to_wandrrr_out(record)
                         for record in result
@@ -79,6 +109,7 @@ class WandrrrRepository:
         except Exception as e:
             print(e)
             return {"message": "Could not get all wandrrrs"}
+
 
     def delete(self, wandrrr_id: int) -> bool:
         try:
@@ -105,7 +136,8 @@ class WandrrrRepository:
                     db.execute(
                         """
                         UPDATE wandrrrs
-                        SET title = %s,
+                        SET owner_id = %s,
+                            title = %s,
                             start_date = %s,
                             end_date = %s,
                             location = %s,
@@ -124,6 +156,7 @@ class WandrrrRepository:
                         WHERE wandrrrs_id = %s
                         """,
                         [
+                            post.owner_id,
                             post.title,
                             post.start_date,
                             post.end_date,
@@ -155,22 +188,23 @@ class WandrrrRepository:
     def record_to_wandrrr_out(self, record):
         return PostOut(
             wandrrrs_id=record[0],
-            title=record[1],
-            start_date=record[2],
-            end_date=record[3],
-            location=record[4],
-            description=record[5],
-            mood=record[6],
-            companion=record[7],
-            companion_dropdown=record[8],
-            weather=record[9],
-            photos01=record[10],
-            photos02=record[11],
-            photos03=record[12],
-            photos04=record[13],
-            photos05=record[14],
-            timestamp=record[15],
-            rating=record[16],
+            owner_id=record[1],
+            title=record[2],
+            start_date=record[3],
+            end_date=record[4],
+            location=record[5],
+            description=record[6],
+            mood=record[7],
+            companion=record[8],
+            companion_dropdown=record[9],
+            weather=record[10],
+            photos01=record[11],
+            photos02=record[12],
+            photos03=record[13],
+            photos04=record[14],
+            photos05=record[15],
+            timestamp=record[16],
+            rating=record[17],
         )
 
     def get_one(self, wandrrrs_id: int) -> Optional[PostOut]:
@@ -183,6 +217,7 @@ class WandrrrRepository:
                     result = db.execute(
                         """
                         SELECT wandrrrs_id
+                            , owner_id
                             , title
                             , start_date
                             , end_date
@@ -219,12 +254,12 @@ class WandrrrRepository:
                 result = db.execute(
                     """
                     INSERT INTO wandrrrs
-                        (title, start_date, end_date, location, description, mood, companion, companion_dropdown, weather, photos01, photos02, photos03, photos04, photos05, timestamp, rating)
+                        (owner_id, title, start_date, end_date, location, description, mood, companion, companion_dropdown, weather, photos01, photos02, photos03, photos04, photos05, timestamp, rating)
                     VALUES
-                        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING wandrrrs_id;
                     """,
-                    [
+                    [   post.owner_id,
                         post.title,
                         post.start_date,
                         post.end_date,
