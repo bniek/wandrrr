@@ -1,5 +1,11 @@
 import Nav from './Nav';
-import { BrowserRouter } from "react-router-dom";
+import NewWandrrrForm from './NewWandrrrForm';
+import {
+   BrowserRouter,
+   Routes,
+   Route,
+  } from "react-router-dom";
+
 
 
 
@@ -7,6 +13,11 @@ import { BrowserRouter } from "react-router-dom";
     return (
       <BrowserRouter>
         <Nav />
+        <div className="container">
+          <Routes>
+            <Route path="new" element={<NewWandrrrForm />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     );
   }
