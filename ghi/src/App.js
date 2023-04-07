@@ -1,12 +1,20 @@
-import Nav from './Nav';
-import { BrowserRouter } from "react-router-dom";
+// import Nav from './Nav';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import GetOne from './get_one';
+import GetTwo from "./get_two";
 
 
-
-  function App() {
+  function App(props) {
     return (
       <BrowserRouter>
-        <Nav />
+        {/* <Nav /> */}
+        <div className="container">
+        <Routes>
+          {/* <Route path="new" element={<WandrrrForm />} /> */}
+          <Route path="gettwo" element={<GetTwo posts={props.posts} />} />
+          <Route path="getone" element={<GetOne />} />
+        </Routes>
+        </div>
       </BrowserRouter>
     );
   }

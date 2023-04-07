@@ -36,11 +36,11 @@ not_authorized = HTTPException(
     headers={"WWW-Authenticate":"Bearer"}
 )
 
-@router.get("wandrrr/user/{id}")
+@router.get("/wandrrr/user/{id}")
 def get_user(
     id: int,
     accounts: AccountRepo = Depends(),
-    ra=Depends(authenticator.get_account_data),
+
 )-> AccountOut:
     account = accounts.get_user_by_id(username=id)
     if not account:
@@ -50,20 +50,24 @@ def get_user(
     else:
         return account
 
+@router.get("/wandrrrs/protected", response_model= bool)
+async def get_protected(
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    return True
+
 @router.get("/token")
 async def get_token(
     request: Request,
-    account_data : dict
-    | None = Depends(authenticator.get_account_data),
-     accounts: AccountRepo = Depends(),
-     ra=Depends(authenticator.get_account_data),
- )-> AccountToken:
-    account = await get_user(account_data["id"], accounts=accounts, ra=ra)
-    return {
-        "access_token": request.cookies[authenticator.cookie_name],
-        "type": "Bearer",
-        "account": account,
-    }
+    account : AccountOut = Depends(authenticator.try_get_current_account_data)
+
+)-> AccountToken| None:
+    if authenticator.cookie_name in request.cookies:
+        return {
+            "access_token": request.cookies[authenticator.cookie_name],
+            "type": "Bearer",
+            "account": account,
+        }
 
 
 @router.post("/wandrrrs/accounts")

@@ -7,6 +7,8 @@ from queries.journal_entries import (
     PostOut,
     WandrrrRepository,
 )
+from routers.accounts import AccountToken
+from jwtdown_fastapi.authentication import Token
 
 router = APIRouter()
 
@@ -34,20 +36,6 @@ def get_post(
     if wandrrr_post is None:
         response.status_code = 404
     return wandrrr_post
-
-
-
-# @router.get("/wandrrrs/{wandrrrs_id}", response_model=Optional[PostOut], )
-# def get_post(
-#      wandrrrs_id : int,
-#      response: Response,
-#      repo: WandrrrRepository = Depends(),
-# ) -> PostOut:
-#     wandrrr_post = repo.get_one(wandrrrs_id)
-#     if wandrrr_post is None:
-#         response.status_code = 404
-#     return wandrrr_post
-
 
 
 
