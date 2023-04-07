@@ -17,6 +17,13 @@ import GetTwo from "./get_two";
         </div>
       </BrowserRouter>
     );
-  }
+
+
+  return (
+    <AuthProvider>
+      {/* All of your other components, here */}
+    </AuthProvider>
+  );
+}
 
 export default App;
