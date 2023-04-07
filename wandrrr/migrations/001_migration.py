@@ -20,7 +20,8 @@ steps = [
         # "Up" SQL statement
         """
         CREATE TABLE wandrrrs (
-            wandrrrs_id SERIAL PRIMARY KEY NOT NULL,
+            wandrrrs_id SERIAL NOT NULL,
+            owner_id INT NOT NULL,
             title VARCHAR(50) NOT NULL,
             start_date DATE NOT NULL,
             end_date DATE,
@@ -36,7 +37,11 @@ steps = [
             photos04 VARCHAR(2048),
             photos05 VARCHAR(2048),
             timestamp TIMESTAMPTZ NOT NULL,
-            rating INT
+            rating INT,
+            CONSTRAINT pk_wandrrrs PRIMARY KEY (wandrrrs_id),
+            CONSTRAINT fk_accounts FOREIGN KEY (owner_id) REFERENCES accounts (id) ON DELETE CASCADE
+
+
         );
         """,
         # "Down" SQL statement

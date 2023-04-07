@@ -1,14 +1,27 @@
 import Nav from './Nav';
 import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 
 
 
-  function App() {
-    return (
-      <BrowserRouter>
-        <Nav />
-      </BrowserRouter>
-    );
-  }
+function App() {
+  // other stuff, here
 
-export default App;
+  return (
+    <AuthProvider>
+      {/* All of your other components, here */}
+    </AuthProvider>
+  );
+}
+
+
+
+//   function App() {
+//     return (
+//       <BrowserRouter>
+//         <Nav />
+//       </BrowserRouter>
+//     );
+//   }
+
+// export default App;
