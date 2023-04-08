@@ -65,20 +65,19 @@ not_authorized = HTTPException(
     headers={"WWW-Authenticate":"Bearer"}
 )
 
-# Need clarify what this chunk of code is trying to do. And try to debug it for its intended usage
-# @router.get("/wandrrr/user/{id}")
-# def get_user(
-#     id: int,
-#     accounts: AccountRepo = Depends(),
-#     ra=Depends(authenticator.get_account_data),
-# )-> AccountOut:
-#     account = accounts.get_user_by_id(id=id)
-#     if not account:
-#         raise HTTPException(
-#             status.HTTP_400_BAD_REQUEST, detail = "Account does not exist"
-#         )
-#     else:
-#         return account
+@router.get("/wandrrr/user/{id}")
+def get_user(
+    id: int,
+    accounts: AccountRepo = Depends(),
+    ra=Depends(authenticator.get_account_data),
+)-> AccountOut:
+    account = accounts.get_user_by_id(id=id)
+    if not account:
+        raise HTTPException(
+            status.HTTP_400_BAD_REQUEST, detail = "Account does not exist"
+        )
+    else:
+        return account
 
 
 @router.post("/wandrrrs/accounts")
@@ -89,6 +88,7 @@ async def create_account(
     repo: AccountRepo = Depends(),
 ):
     hashed_password = authenticator.hash_password(info.password)
+    print("INFO HERE", info)
     try:
         account = repo.CreateUser(info, hashed_password)
     except DuplicateAccountError:
