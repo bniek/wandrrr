@@ -24,10 +24,37 @@ function Auth() {
         }
     };
 
-    const { username = "", password = "" } = formData;
-    return token ? null : (
+    const { first_name = "", last_name = "", email = "", username = "", password = "" } = formData;
+    return (
         <div>
             <ul>
+                <li>
+                    first_name{" "}
+                    <input
+                    type="text"
+                    name="first_name"
+                    value={first_name}
+                    onChange={handleFormChange}
+                    />
+                </li>
+                <li>
+                    last_name{" "}
+                    <input
+                    type="text"
+                    name="last_name"
+                    value={last_name}
+                    onChange={handleFormChange}
+                    />
+                </li>
+                <li>
+                    email{" "}
+                    <input
+                    type="text"
+                    name="email"
+                    value={email}
+                    onChange={handleFormChange}
+                    />
+                </li>
                 <li>
                     username{" "}
                     <input
