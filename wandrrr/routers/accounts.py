@@ -68,16 +68,26 @@ not_authorized = HTTPException(
 @router.get("/wandrrr/user/{id}")
 def get_user(
     id: int,
-    accounts: AccountRepo = Depends(),
-    ra=Depends(authenticator.get_account_data),
+    repo: AccountRepo = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 )-> AccountOut:
-    account = accounts.get_user_by_id(id=id)
+    # Check if the user is logged in
+    if not account_data:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+
+    # Check if the user is requesting their own account details
+    if account_data["id"] != id:
+        raise HTTPException(status_code=403, detail="Forbidden")
+
+    # Get the account details from the repository
+    account = repo.get_user_by_id(id=id)
+
     if not account:
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST, detail = "Account does not exist"
+            status.HTTP_400_BAD_REQUEST, detail="Account does not exist"
         )
-    else:
-        return account
+
+    return account
 
 
 @router.post("/wandrrrs/accounts")
@@ -88,7 +98,6 @@ async def create_account(
     repo: AccountRepo = Depends(),
 ):
     hashed_password = authenticator.hash_password(info.password)
-    print("INFO HERE", info)
     try:
         account = repo.CreateUser(info, hashed_password)
     except DuplicateAccountError:
