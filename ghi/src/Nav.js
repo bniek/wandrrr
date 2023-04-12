@@ -10,6 +10,7 @@ function Nav() {
             <ul className="menu menu-horizontal px-1">
             <li><NavLink to="/wandrrrs/">Home</NavLink></li>
             <li><NavLink to="/new/">New Wandrrr</NavLink></li>
+            <li><NavLink to="/edit/">Edit</NavLink></li>
             <li tabIndex={0}>
                 <a>
                 Username

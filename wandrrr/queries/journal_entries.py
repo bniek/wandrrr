@@ -7,10 +7,10 @@ class Error(BaseModel):
     message: str
 
 class PostIn(BaseModel):
-    owner_id: int
+    owner_id: Optional[int]
     title: str
     start_date: date
-    end_date: date
+    end_date: Optional[date]
     location: str
     description: Optional[str]
     mood: Optional[str]
@@ -23,14 +23,14 @@ class PostIn(BaseModel):
     photos04: Optional[str]
     photos05: Optional[str]
     timestamp: date
-    rating: int
+    rating: Optional[str]
 
 class PostOut(BaseModel):
     wandrrrs_id: int
     owner_id: int
     title: str
     start_date: date
-    end_date: date
+    end_date: Optional[date]
     location: str
     description: Optional[str]
     mood: Optional[str]
@@ -43,7 +43,7 @@ class PostOut(BaseModel):
     photos04: Optional[str]
     photos05: Optional[str]
     timestamp: date
-    rating: int
+    rating: Optional[str]
 
 class WandrrrRepository:
     def get_all(self, owner_id: Optional[int] = None) -> Union[Error, List[PostOut]]:

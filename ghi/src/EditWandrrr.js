@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'
 
 
-function NewWandrrrForm() {
+function EditWandrrr() {
     const [title, setTitle] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
@@ -235,4 +235,4 @@ function NewWandrrrForm() {
         </div>
       );
 }
-export default NewWandrrrForm;
+export default EditWandrrr;
