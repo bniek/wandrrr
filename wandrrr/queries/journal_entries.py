@@ -217,10 +217,7 @@ class WandrrrRepository:
                     result = db.execute(
                         """
                         SELECT wandrrrs_id
-<<<<<<< HEAD
-=======
                             , owner_id
->>>>>>> main
                             , title
                             , start_date
                             , end_date

@@ -1,161 +1,138 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-
-function GetOne() {
-    const [wandrrrPost, setWandrrrPost] = useState([]);
-    const wandrrrs_id = 1
-    const fetchData = async () => {
-
-        const url = `http://localhost:8000/wandrrrs/${wandrrrs_id}`
-        const response = await fetch(url);
-        if (response.ok) {
-            const data = await response.json();
-            setWandrrrPost([data]);
-
-        }
-    };
-
-
-    return (
-        <div className="posts">
-            {wandrrrPost.filter(post => {
-                return (post.wandrrrs_id)
-            }).map(post => {
-                return (
-                    <div className="post">{post.wandrrrs_id}</div>
-
-                );
-
-
-            })}
-
-        </div>
-
-=======
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
-function GetOne() {
-    const [wandrrrPost, setWandrrrPost] = useState("");
-    const fetchData = async () => {
-        const url = `http://localhost:8000/wandrrrs/${wandrrrs_id}/`
-        const response = await fetch(url)
-        if (response.ok) {
-            const data = await response.json();
+function WandrrrDetail() {
+    const [wandrrr, setWandrrr] = useState([]);
+    const { wandrrrs_id } = useParams();
+    const [moods, setMoods] = useState("");
+    const [ratings, setRatings] = useState("");
 
-// need to set data for post details    ?????
-            setWandrrrPost(data.wandrrrs_id);
+    useEffect(() => {
+        const fetchWandrrrDetails = async () => {
+            const url = `${process.env.REACT_APP_WANDRRR_API_HOST}/wandrrrs/${wandrrrs_id}`;
+            // const fetchConfig = {
+            //     method: "get",
+            //     // headers: {
+            //     //     Authorization: `Bearer ${token}`,
+            //     // },
+            // }
+            const response = await fetch(url, {credentials: "include"});
+            if (response.ok) {
+                const data = await response.json();
+                setWandrrr(data);
+                if (data.mood === "happy"){
+                    setMoods("🙂");
+                } else if (data.mood === "sad"){
+                    setMoods("😟");
+                }
+                if (data.rating === 1 ){
+                    setRatings("⭐️")
+                }
+                if (data.rating === 2 ){
+                    setRatings("⭐️⭐️")
+                }
+                if (data.rating === 3){
+                    setRatings("⭐️⭐️⭐️")
+                }
+                if (data.rating === 4 ){
+                    setRatings("⭐️⭐️⭐️⭐️")
+                }
+                if (data.rating === 5 ){
+                    setRatings("⭐️⭐️⭐️⭐️⭐️")
+                }
+                if (data.photos03 === null) {
+                    return document.getElementById('slide1');
+                }else{
+
+                }
+            }
         }
+        fetchWandrrrDetails();
+
+    }, [wandrrrs_id]);
+
+
+
+    function skip03() {
+
+        return document.getElementById('#slide1');
+
     }
 
-    useEffect(() => { fetchData(); }, [])
-
-
-    async function deleteWandrrr(wandrrr) {
-        const deleteUrl = `http://localhost:8000/wandrrrs/${wandrrrs_id}/`
-        const response = await fetch(deleteUrl, { method: "delete" })
-        if (response.ok) {
-            fetchData()
-
-        }
-
-    }
 
 
 
+        return         (
+            <>
+            <div>
+                <div className='wandrrrPost'>
 
-    return (
-        <table className="table table-striped">
-            <thead>
-                <tr>
-                    <th>VIN</th>
-                    <th>Customer Name</th>
-                    <th>Vip Status</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Technician</th>
-                    <th>Reason</th>
-                    <th>Action</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {serviceAppointment.filter(appointments => {
-                    return (appointments.is_complete == false)
-                }).map(service => {
-                    return (
-                        <tr key={service.id}>
-                            <td>{service.vin_service}</td>
-                            <td>{service.vehicle_owner}</td>
-                            <td>{service.is_vip ? "yes" : "no"}</td>
-                            <td>{new Date(service.datetime).toLocaleDateString()}</td>
-                            <td>{new Date(service.datetime).toLocaleTimeString()}</td>
-                            <td>{service.technician.technician_name}</td>
-                            <td>{service.reason}</td>
-                            <td>
-                                <button type="button" className="btn btn-success btn-sm" onClick={() => completeService(service)}>Complete</button>
-                            </td>
+                    <h1>{wandrrr.title}</h1>
+                    <h2>{wandrrr.timestamp}</h2>
+                    <h2>{moods}</h2>
+                    <h2>{ratings}</h2>
+                    <div className="carousel w-full rounded-box">
+                    <div id="slide1" className="carousel-item relative w-full" >
+                        <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos01} className="w-full" />
+                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide5" className="btn btn-circle">❮</a>
+                        <a href="#slide2" className="btn btn-circle">❯</a>
+                        </div>
+                    </div>
+                    <div id="slide2" className="carousel-item relative w-full">
+                        <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos02} className="w-full" onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = wandrrr.photos01;
+                        }} />
+                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide1" className="btn btn-circle">❮</a>
+                        <a href="#slide3" className="btn btn-circle">❯</a>
+                        </div>
+                    </div>
+                    <div id="slide3" className="carousel-item relative w-full" >
+                        <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos03} className="w-full" onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.style.display = "none";
+                        }}  />
+                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2" >
+                        <a href="#slide2" className="btn btn-circle">❮</a>
+                        <a href="#slide4" className="btn btn-circle">❯</a>
+                        </div>
+                    </div>
+                    <div id="slide4" className="carousel-item relative w-full">
+                        <img
+                            style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }}
+                            src={wandrrr.photos04}
+                            className="w-full" onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = wandrrr.photos01;}}/>
 
-                            <td><button onClick={() => deleteService(service)} type="button" className="btn btn-danger btn-sm">Cancel</button></td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
->>>>>>> main
-    );
+
+                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide3" className="btn btn-circle">❮</a>
+                        <a href="#slide5" className="btn btn-circle">❯</a>
+                        </div>
+
+
+                        </div>
+                        <div id="slide5" className="carousel-item relative w-full">
+                        <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos05} className="w-full" onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = wandrrr.photos01;
+                        }} />
+                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide4" className="btn btn-circle">❮</a>
+                        <a href="#slide1" className="btn btn-circle">❯</a>
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            </>
+        );
 }
-
-export default GetOne;
-<<<<<<< HEAD
-
-
-
-
-// import React, { useState, useEffect } from 'react';
-
-// function GetOne() {
-//     const [wandrrrPost, setWandrrrPost] = useState([]);
-//     const fetchData = async () => {
-//         const url = `http://localhost:8000/wandrrrs/`
-//         const response = await fetch(url);
-//         if (response.ok) {
-//             const data = await response.json();
-//             setWandrrrPost([data]);
-
-//         }
-//     };
-
-//     useEffect(()=> {
-//         fetchData();
-//     }, []);
-
-//     const getById = async (wandrrrs_id=id) => {
-//         const idUrl = `http://localhost:8000/wandrrrs/${wandrrrs_id}`;
-//         const response = await fetch(idUrl)
-//     }
-
-
-
-
-
-//     return (
-//         <div className="posts">
-//             {wandrrrPost.filter(post => {
-//                 return (post.wandrrrs_id)
-//             }).map(post => {
-//                 return (
-//                     <div className="post">{post.wandrrrs_id}</div>
-
-//                 );
-
-
-//             })}
-
-//         </div>
-
-//     );
-// }
-
-// export default GetOne;
-=======
->>>>>>> main
+export default WandrrrDetail;

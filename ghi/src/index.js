@@ -14,21 +14,21 @@ root.render(
 
 
 
-async function loadPosts() {
-  const response = await fetch('http://localhost:8000/wandrrrs/');
-  if (response.ok) {
-    const data = await response.json();
-    console.log(data);
-    root.render(
-      <React.StrictMode>
-        <App posts={data.posts} />
-      </React.StrictMode>
-    )
-  } else {
-    console.error(response);
-  }
-}
-loadPosts();
+// async function loadPosts() {
+//   const response = await fetch('http://localhost:8000/wandrrrs/');
+//   if (response.ok) {
+//     const data = await response.json();
+//     console.log(data);
+//     root.render(
+//       <React.StrictMode>
+//         <App posts={data.posts} />
+//       </React.StrictMode>
+//     )
+//   } else {
+//     console.error(response);
+//   }
+// }
+// loadPosts();
 
 
 // If you want to start measuring performance in your app, pass a function

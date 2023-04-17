@@ -21,7 +21,7 @@ function GetOne() {
                 return (post.wandrrrs_id)
             }).map(post => {
                 return (
-                    <div className="post">{post.wandrrrs_id}</div>
+                    <div className="post">{post.title}</div>
 
                 );
 

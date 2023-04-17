@@ -87,4 +87,16 @@ Today, I worked on:
 
 As a group:
 
-*
+* Completed pair programming and merge request for protected endpoints
+
+## Friday, April 7
+
+Today, I worked on:
+
+* FE coding and debugging for the view detailed post page
+
+As a group:
+
+* Got instructor help for FE authentication
+* Decided on the color palette for the site
+* Discussed what we will work on for
