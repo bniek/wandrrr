@@ -42,14 +42,15 @@
 
 import { useContext } from 'react';
 import { Routes, Route, NavLink } from "react-router-dom";
-import { AuthContext } from '@galvanize-inc/jwtdown-for-react';
+import useToken, { AuthContext, AuthProvider } from '@galvanize-inc/jwtdown-for-react';
 import Auth from "./Auth.js";
-import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import "./App.css";
+import useUser from "./useUser";
 
 function App() {
   const { token } = useContext (AuthContext);
-  console.log(token);
+  const user = useUser(token);
+  const { logout } = useToken();
     return (
       <div>
         <div
@@ -63,8 +64,8 @@ function App() {
         >
           <NavLink to="/create-wandrrr">new wandrrr</NavLink>
           <NavLink to="my-wandrrrs/">my  wandrrrs</NavLink>
-          {true ? (
-            <button onClick={() => console.log("Log out")}>Log out</button>
+          {token ? (
+            <button onClick={logout}>Log out</button>
           ) : (
             <>
               <NavLink to="/login">login</NavLink>

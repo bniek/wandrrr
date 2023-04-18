@@ -18,9 +18,9 @@ function Auth() {
     const isLogIn = location.pathname.includes("login");
     const handleSubmit = () => {
         if (isLogIn) {
-
+            login(formData.username, formData.password);
         } else {
-            register(formData,`${process.env.REACT_APP_WANDRRR_API_HOST}/wandrrrs/accounts`);
+            register(formData,`${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/accounts`);
         }
     };
 
