@@ -43,7 +43,7 @@ class AccountRepo(BaseModel):
                 id = db.fetchone()[0]
                 return self.account_in_to_out(id, accounts, hashed_password)
 
-    def get_user_by_id(self, id: str) ->AccountOut:
+    def get_user_by_id(self, id: int) ->AccountOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(

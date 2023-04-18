@@ -98,5 +98,24 @@ Today, I worked on:
 As a group:
 
 * Got instructor help for FE authentication
-* Decided on the color palette for the site
-* Discussed what we will work on for
+* Began on the color palette for the site
+* Discussed what we will work on during spring break
+
+## BREAK April 8 - April 16
+
+During the this week:
+
+* I lightly worked on getting the photo carousel working
+
+## April 17
+
+Today, I worked on:
+
+* Finished the photo carousel
+* Made more sample entries and began some front end styling
+
+As a group:
+
+* We finished the login authentication
+* Discussed further styling and standardization
+* Still need to discuss field input standardization
