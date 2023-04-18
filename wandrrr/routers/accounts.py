@@ -12,12 +12,21 @@ from auth.authenticator import authenticator
 from pydantic import BaseModel
 from typing import List, Optional, Union
 
+from typing import List, Optional, Union
+
 
 from queries.accounts import (
     AccountIn,
     AccountOut,
     AccountRepo,
     DuplicateAccountError,
+)
+
+from queries.journal_entries import (
+    Error,
+    PostIn,
+    PostOut,
+    WandrrrRepository,
 )
 
 from queries.journal_entries import (
@@ -59,26 +68,55 @@ async def get_token(
             "account": account,
         }
 
+@router.get("/wandrrrs/protected", response_model=Union[List[PostOut], Error])
+async def get_protected(
+    wandrrrs: WandrrrRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    owner_id = account_data['id']
+    return wandrrrs.get_all(owner_id=owner_id)
+
+@router.get("/token", response_model=AccountToken | None)
+async def get_token(
+    request: Request,
+    account: AccountOut = Depends(authenticator.try_get_current_account_data)
+) -> AccountToken | None:
+    if account and authenticator.cookie_name in request.cookies:
+        return {
+            "access_token": request.cookies[authenticator.cookie_name],
+            "type": "Bearer",
+            "account": account,
+        }
+
 not_authorized = HTTPException(
     status_code=status.HTTP_401_UNAUTHORIZED,
     detail="Invalid authentication credentials",
     headers={"WWW-Authenticate":"Bearer"}
 )
 
-# Need clarify what this chunk of code is trying to do. And try to debug it for its intended usage
-# @router.get("/wandrrr/user/{id}")
-# def get_user(
-#     id: int,
-#     accounts: AccountRepo = Depends(),
-#     ra=Depends(authenticator.get_account_data),
-# )-> AccountOut:
-#     account = accounts.get_user_by_id(id=id)
-#     if not account:
-#         raise HTTPException(
-#             status.HTTP_400_BAD_REQUEST, detail = "Account does not exist"
-#         )
-#     else:
-#         return account
+@router.get("/wandrrr/user/{id}")
+def get_user(
+    id: int,
+    repo: AccountRepo = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+)-> AccountOut:
+    # Check if the user is logged in
+    if not account_data:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+
+    # Check if the user is requesting their own account details
+    if account_data["id"] != id:
+        raise HTTPException(status_code=403, detail="Forbidden")
+
+    # Get the account details from the repository
+    account = repo.get_user_by_id(id=id)
+
+    if not account:
+        raise HTTPException(
+            status.HTTP_400_BAD_REQUEST, detail="Account does not exist"
+        )
+
+    return account
 
 
 @router.post("/wandrrrs/accounts")

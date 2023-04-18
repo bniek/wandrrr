@@ -1,29 +1,25 @@
 import Nav from './Nav';
-import NewWandrrrForm from './NewWandrrrForm';
-import UpdateWandrrr from './UpdateWandrrr';
-import {
-   BrowserRouter,
-   Routes,
-   Route,
-  } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 
 
 
+import { useContext } from 'react';
+import { Routes, Route, NavLink } from "react-router-dom";
+import useToken, { AuthContext, AuthProvider } from '@galvanize-inc/jwtdown-for-react';
+import Auth from "./Auth.js";
+import "./App.css";
+import useUser from "./useUser";
 
-  function App(props) {
-    return (
-      <BrowserRouter>
-        <Nav />
-        <div className="container">
-          <Routes>
-            <Route path="new" element={<NewWandrrrForm user={props.user} />} />
-            <Route path="edit/" element={<UpdateWandrrr />} />
+function App() {
+  // other stuff, here
 
-          </Routes>
-        </div>
-      </BrowserRouter>
-    );
-  }
+  return (
+    <AuthProvider>
+      {/* All of your other components, here */}
+    </AuthProvider>
+  );
+}
 
 
 export default App;
