@@ -21,7 +21,7 @@ steps = [
         """
         CREATE TABLE wandrrrs (
             wandrrrs_id SERIAL NOT NULL,
-            owner_id INT,
+            owner_id INT NOT NULL,
             title VARCHAR(50) NOT NULL,
             start_date DATE NOT NULL,
             end_date DATE,
@@ -36,7 +36,7 @@ steps = [
             photos03 BYTEA,
             photos04 BYTEA,
             photos05 BYTEA,
-            timestamp DATE NOT NULL DEFAULT CURRENT_DATE,
+            datestamp DATE NOT NULL DEFAULT CURRENT_DATE,
             rating VARCHAR,
             CONSTRAINT pk_wandrrrs PRIMARY KEY (wandrrrs_id),
             CONSTRAINT fk_accounts FOREIGN KEY (owner_id) REFERENCES accounts (id) ON DELETE CASCADE

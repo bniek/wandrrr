@@ -1,6 +1,6 @@
 import Nav from './Nav';
 import NewWandrrrForm from './NewWandrrrForm';
-import EditWandrrr from './EditWandrrr';
+import UpdateWandrrr from './UpdateWandrrr';
 import {
    BrowserRouter,
    Routes,
@@ -10,14 +10,15 @@ import {
 
 
 
-  function App() {
+  function App(props) {
     return (
       <BrowserRouter>
         <Nav />
         <div className="container">
           <Routes>
-            <Route path="new" element={<NewWandrrrForm />} />
-            <Route path="edit" element={<EditWandrrr />} />
+            <Route path="new" element={<NewWandrrrForm user={props.user} />} />
+            <Route path="edit/" element={<UpdateWandrrr />} />
+
           </Routes>
         </div>
       </BrowserRouter>

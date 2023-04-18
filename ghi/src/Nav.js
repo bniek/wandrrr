@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
 
 function Nav() {
+
+  const id = "2";
+
   return (
       <div className="navbar bg-base-100">
         <div className="flex-1">
@@ -10,7 +13,7 @@ function Nav() {
             <ul className="menu menu-horizontal px-1">
             <li><NavLink to="/wandrrrs/">Home</NavLink></li>
             <li><NavLink to="/new/">New Wandrrr</NavLink></li>
-            <li><NavLink to="/edit/">Edit</NavLink></li>
+            <li><NavLink to={`/wandrrrs/edit/${id}`}>Edit</NavLink></li>
             <li tabIndex={0}>
                 <a>
                 Username
