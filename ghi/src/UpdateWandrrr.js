@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const BASE_URL = 'http://localhost:8000'; // replace with backend API base URL
+const BASE_URL = 'http://localhost:000'; // replace with backend API base URL
 
 const getPost = async (id) => {
   const response = await fetch(`${BASE_URL}/wandrrrs/${id}`);
@@ -23,6 +23,17 @@ const updatePost = async (id, post) => {
 
 
 function UpdateWandrrr() {
+  const [ownerId, setOwnerId] = useState('');
+  const fetchData = async () => {
+    const url = 'http://localhost:8000/token';
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      setOwnerId(data.id)
+      console.log(data)
+    }
+  }
+
     const { id } = useParams();
     const [post, setPost] = useState({});
     const [formValues, setFormValues] = useState({});
@@ -36,6 +47,11 @@ function UpdateWandrrr() {
         fetchPost();
     }, [id]);
 
+    const handleOwnerIdChange = (event) => {
+      const value = event.target.value;
+      setOwnerId(value);
+    }
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormValues({ ...formValues, [name]: value });
@@ -48,26 +64,31 @@ function UpdateWandrrr() {
       };
 
 
+  useEffect(() => {
+      fetchData();
+    }, []);
+
+
     return (
         <div className="m-auto py-20">
               <form className="max-w-xl m-auto py-10 mt-10 px-12 border" onSubmit={handleSubmit} id="create-wandrrr-form">
                 <div>
                   <label className="py-2" htmlFor="title">Title</label>
-                  <input value={formValues.title} onChange={handleChange} placeholder="The best day of my life" required type="text" name="title" id="title" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <input value={formValues.title} onChange={handleChange} required type="text" name="title" id="title" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
 
                 <div className="form-floating mb-3">
                   <label className="py-2" htmlFor="start_date">Start date</label>
-                  <input value={formValues.stateDate} onChange={handleChange} placeholder="Your Wandrrr's start date" required type="date" name="start_date" id="start_date" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <input value={formValues.stateDate} onChange={handleChange} required type="date" name="start_date" id="start_date" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
                   <label htmlFor="end_date">End date </label>
-                  <input value={formValues.endDate} onChange={handleChange} placeholder="Your Wandrrr's end date" type="date" name="end_date" id="end_date" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <input value={formValues.endDate} onChange={handleChange} type="date" name="end_date" id="end_date" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
 
                 </div>
                 <div className="form-floating mb-3">
                   <label htmlFor="location">Location</label>
-                  <input value={formValues.location} onChange={handleChange} placeholder="Tokyo, Japan" required type="text" name="location" id="location" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <input value={formValues.location} onChange={handleChange} required type="text" name="location" id="location" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
 
                 </div>
                 <div className="mb-3">
@@ -76,60 +97,110 @@ function UpdateWandrrr() {
                 </div>
                 <div className="form-floating mb-3">
                   <label htmlFor="mood">Mood</label>
-                  <input value={formValues.mood} onChange={handleChange} placeholder="🥳"  type="text" name="mood" id="mood" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
-
+                  <select value={formValues.mood} onChange={handleChange} id="mood" name="mood" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700">
+                    <option value="0">😶</option>
+                    <option value="1">🙂</option>
+                    <option value="2">🥰</option>
+                    <option value="3">😇</option>
+                    <option value="4">🤣</option>
+                    <option value="5">🥳</option>
+                    <option value="6">🤤</option>
+                    <option value="7">🤒</option>
+                    <option value="8">🥹</option>
+                    <option value="9">😅</option>
+                    <option value="10">😒</option>
+                    <option value="11">😞</option>
+                    <option value="12">😕</option>
+                    <option value="13">😢</option>
+                    <option value="14">😡</option>
+                    <option value="15">🤯</option>
+                    <option value="16">🤢</option>
+                    <option value="17">😴</option>
+                    <option value="18">🥱</option>
+                    <option value="19">💀</option>
+                  </select>
                 </div>
                 <div className="form-floating mb-3">
                   <label htmlFor="companion">Companions</label>
-                  <input value={formValues.companion} onChange={handleChange} placeholder="Bennie, Charlene, Elaine, and Sinlin"  type="text" name="companion" id="companion" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
-
+                  <input value={formValues.companion} onChange={handleChange} type="text" name="companion" id="companion" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="companion_dropdown">Companions</label>
-                  <input value={formValues.companionDropdown} onChange={handleChange} placeholder="👯‍♀️👯‍♀️"  type="text" name="companion_dropdown" id="companion_dropdown" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
-
+                  <select value={formValues.companionDropdown} onChange={handleChange} id="companion_dropdown" name="companion_dropdown" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700">
+                    <option value=""></option>
+                    <option value="dog1">🐶</option>
+                    <option value="dog2">🦮</option>
+                    <option value="dog3">🐕‍🦺</option>
+                    <option value="dog4">🐩</option>
+                    <option value="cat2">🐱</option>
+                    <option value="cat2">🐈</option>
+                    <option value="cat3">🐈‍⬛</option>
+                    <option value="baby1">👶</option>
+                    <option value="bestfriend1">👯‍♂️</option>
+                    <option value="bestfriend2">👯‍♂️</option>
+                    <option value="bestfriend3">👫</option>
+                    <option value="bestfriend4">👭</option>
+                    <option value="bestfriend5">👬</option>
+                    <option value="family1">👨‍👨‍👦</option>
+                    <option value="family2">👩‍👩‍👦</option>
+                    <option value="family3">👨‍👩‍👦‍👦</option>
+                    <option value="family4">👪</option>
+                    <option value="family5">👩‍👦</option>
+                    <option value="family6">👨‍👦</option>
+                    <option value="couple1">👩‍❤️‍👨</option>
+                    <option value="couple2">👩‍❤️‍👩</option>
+                    <option value="couple3">💑</option>
+                    <option value="couple4">👨‍❤️‍👨</option>
+                  </select>
                 </div>
                 <div className="form-floating mb-3">
                   <label htmlFor="weather">Weather</label>
-                  <input value={formValues.weather} onChange={handleChange} placeholder="🌧️"  type="text" name="weather" id="weather" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <select value={formValues.weather} onChange={handleChange} id="weather" name="weather" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700">
+                    <option value="">How was the weather?</option>
+                    <option value="rainy">🌧️</option>
+                    <option value="sunny">🌞</option>
+                    <option value="cloudy">🌤️</option>
+                    <option value="tornado">🌪️</option>
+                    <option value="stormy">⛈️</option>
+                    <option value="snowy">⛄️</option>
+                    <option value="windy">🌬️</option>
+                    <option value="foggy">🌫️</option>
+                  </select>
                 </div>
                 <div className="form-floating mb-3">
                   <label htmlFor="rating">Rating</label>
                   <select value={formValues.rating} onChange={handleChange} id="rating" name="rating" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700">
                     <option value="">How would you rate this Wandrrr?</option>
-                    <option value="1">💔</option>
-                    <option value="2">😞</option>
-                    <option value="3">😐</option>
-                    <option value="4">🙂</option>
-                    <option value="5">🥰</option>
+                    <option value="1">⭐️</option>
+                    <option value="2">⭐️⭐️</option>
+                    <option value="3">⭐️⭐️⭐️</option>
+                    <option value="4">⭐️⭐️⭐️⭐️</option>
+                    <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
                   </select>
                 </div>
+
                 <div className="form-floating mb-3">
-                  <label htmlFor="photos01">Cover photo         </label>
-                  <input value={formValues.photos01} onChange={handleChange} required type="file" name="photos01" id="photos01" className="file-input file-input-bordered file-input-accent w-full max-w-xs" />
+                  <label htmlFor="photos01">Cover photo</label>
+                  <input value={formValues.photos01} onChange={handleChange} placeholder="URL" required type="text" name="photos01" id="photos01" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                </div>
+                <div className="form-floating mb-3">
+                  <label htmlFor="photos02">Another photo</label>
+                  <input value={formValues.photos02} onChange={handleChange} placeholder="URL" type="text" name="photos02" id="photos02" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
 
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="photos02">Another picture</label>
-                  <input value={formValues.photos02} onChange={handleChange}  type="file" name="photos02" id="photos02" className="file-input file-input-bordered file-input-accent w-full max-w-xs" />
-
+                  <label htmlFor="photos03">Another photo</label>
+                  <input value={formValues.photos03} onChange={handleChange}  placeholder="URL" type="text" name="photos03" id="photos03" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="photos03">Another picture</label>
-                  <input value={formValues.photos03} onChange={handleChange}  type="file" name="photos03" id="photos03" className="file-input file-input-bordered file-input-accent w-full max-w-xs" />
-
+                  <label htmlFor="photos04">Another photo</label>
+                  <input value={formValues.photos04} onChange={handleChange} placeholder="URL" type="text" name="photos04" id="photos04" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="photos04">Another picture</label>
-                  <input value={formValues.photos04} onChange={handleChange}  type="file" name="photos04" id="photos04" className="file-input file-input-bordered file-input-accent w-full max-w-xs" />
-
+                  <label htmlFor="photos05">Another photo</label>
+                  <input value={formValues.photos05} onChange={handleChange} placeholder="URL" type="text" name="photos05" id="photos05" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
-                <div className="form-floating mb-3">
-                  <label htmlFor="photos05">Another picture</label>
-                  <input value={formValues.photos05} onChange={handleChange}  type="file" name="photos05" id="photos05" className="file-input file-input-bordered file-input-accent w-full max-w-xs" />
-                </div>
-
                 <button className="mt-4 w-full bg-gray-400 hover:bg-gray-600 text-white border py-3 px-6 font-semibold text-md rounded" type="submit">Create!</button>
+              <input onChange={handleOwnerIdChange} value={ownerId} type="hidden" name="owner_id" id="owner_id" />
               </form>
         </div>
       );

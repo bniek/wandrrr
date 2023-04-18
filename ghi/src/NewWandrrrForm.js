@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import useUser from "./useUser";
 
 
-function NewWandrrrForm() {
+
+function NewWandrrrForm(props) {
+  const user = props.user
+  // const userId = user.id
+  // console.log(userId)
+
+
+  // const fetchData = async () => {
+  //   const url = 'http://localhost:8000/token/';
+  //   const response = await fetch(url);
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       setOwnerId(data.id);
+  //   }
+  // }
+
   const [ownerId, setOwnerId] = useState('');
-  const fetchData = async () => {
-    const url = 'http://localhost:8000/token';
-    const response = await fetch(url);
-    if (response.ok) {
-      const data = await response.json();
-      setOwnerId(data.id)
-      console.log(data)
-    }
-  }
-
   const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -31,10 +37,12 @@ function NewWandrrrForm() {
 
 
 
+
   const handleOwnerIdChange = (event) => {
       const value = event.target.value;
       setOwnerId(value);
     }
+
   const handleTitleChange = (event) => {
       const value = event.target.value;
       setTitle(value);
@@ -165,14 +173,14 @@ function NewWandrrrForm() {
     }
   }
 
-  useEffect(() => {
-      fetchData();
-    }, []);
 
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
     return (
         <div className="m-auto py-20">
-              <form className="max-w-xl m-auto py-10 mt-10 px-12 border" onSubmit={handleSubmit} id="create-wandrrr-form">
+              <form className="shadow-lg max-w-xl m-auto py-10 mt-10 px-12 border" onSubmit={handleSubmit} id="create-wandrrr-form">
                 <div className="form-floating mb-3">
                   <label className="py-2" htmlFor="title">Title</label>
                   <input onChange={handleTitleChange} placeholder="The best day of my life" required type="text" name="title" id="title" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
@@ -296,7 +304,7 @@ function NewWandrrrForm() {
                   <label htmlFor="photos05">Another photo</label>
                   <input onChange={handlePhotos05Change}  placeholder="URL" type="text" name="photos05" id="photos05" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
-                <input onChange={handleOwnerIdChange} value={ownerId} type="hidden" name="owner_id" id="owner_id" />
+                {/* <input onChange={handleOwnerIdChange} value={userId} type="hidden" name="owner_id" id="owner_id" /> */}
                 <button className="mt-4 w-full bg-gray-400 hover:bg-gray-600 text-white border py-3 px-6 font-semibold text-md rounded" type="submit">Create!</button>
               </form>
         </div>

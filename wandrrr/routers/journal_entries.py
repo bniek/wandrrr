@@ -76,9 +76,9 @@ def delete_post(
 def create_post(
     post: PostIn,
     repo: WandrrrRepository = Depends(),
-    # account_data: dict = Depends(authenticator.get_current_account_data),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    # if not account_data:
-    #     raise HTTPException(status_code=401, detail="You need to be logged in to create a post")
-    # post.owner_id = account_data['id']
+    if not account_data:
+        raise HTTPException(status_code=401, detail="You need to be logged in to create a post")
+    post.owner_id = account_data['id']
     return repo.create(post)

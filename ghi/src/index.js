@@ -19,25 +19,24 @@ root.render(
   </React.StrictMode>
 );
 
-async function loadData () {
-  const userResponse = await fetch('http://localhost:8000/token/');
+// async function loadData () {
+//   const userResponse = await fetch('http://localhost:8000/token/');
 
 
+//   if (userResponse.ok) {
+//     const userData = await userResponse.json();
+//     root.render(
+//       <React.StrictMode>
+//         <App user={userData.account} />
+//       </React.StrictMode>
+//     );
+//   } else {
+//     console.error(userResponse);
 
-  if (userResponse.ok) {
-    const userData = await userResponse.json();
-    root.render(
-      <React.StrictMode>
-        <App user={userData.account} />
-      </React.StrictMode>
-    );
-  } else {
-    console.error(userResponse);
 
-
-  }
-}
-loadData();
+//   }
+// }
+// loadData();
 
 
 
