@@ -40,11 +40,7 @@ function WandrrrDetail() {
                 if (data.rating === 5 ){
                     setRatings("⭐️⭐️⭐️⭐️⭐️")
                 }
-                if (data.photos03 === null) {
-                    return document.getElementById('slide1');
-                }else{
 
-                }
             }
         }
         fetchWandrrrDetails();
@@ -53,59 +49,54 @@ function WandrrrDetail() {
 
 
 
-    function skip03() {
-
-        return document.getElementById('#slide1');
-
-    }
-
-
-
 
         return         (
             <>
             <div>
-                <div className='wandrrrPost'>
+                <div align="center" className='wandrrrPost'>
 
-                    <h1>{wandrrr.title}</h1>
-                    <h2>{wandrrr.timestamp}</h2>
-                    <h2>{moods}</h2>
-                    <h2>{ratings}</h2>
-                    <div className="carousel w-full rounded-box">
+                    <h1 style={{fontSize:60, fontWeight: "lighter", letterSpacing:"0.1em", display: "flex", flexDirection: "column", justifyContent: "center", textTransform: "uppercase"}}>{wandrrr.title}</h1>
+
+                    <h2>{new Date(wandrrr.start_date).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric' })}{wandrrr.end_date && (` - ${new Date(wandrrr.end_date).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric' })}`)}</h2>
+
+
+                    <h2>{moods}   {ratings}</h2>
+
+
+
+
+                    <h2>{wandrrr.location}</h2>
+                    <div align="center" className="carousel w-full rounded-box">
                     <div id="slide1" className="carousel-item relative w-full" >
                         <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos01} className="w-full" />
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide5" className="btn btn-circle">❮</a>
+                        <a className="btn btn-circle"></a>
                         <a href="#slide2" className="btn btn-circle">❯</a>
                         </div>
                     </div>
+                    {wandrrr.photos02 && (
                     <div id="slide2" className="carousel-item relative w-full">
-                        <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos02} className="w-full" onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = wandrrr.photos01;
-                        }} />
+                        <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos02} className="w-full"  />
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href="#slide1" className="btn btn-circle">❮</a>
                         <a href="#slide3" className="btn btn-circle">❯</a>
                         </div>
-                    </div>
+                    </div>)}
+                    {wandrrr.photos03 && (
                     <div id="slide3" className="carousel-item relative w-full" >
-                        <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos03} className="w-full" onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.style.display = "none";
-                        }}  />
+                        <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos03} className="w-full"  />
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2" >
                         <a href="#slide2" className="btn btn-circle">❮</a>
                         <a href="#slide4" className="btn btn-circle">❯</a>
                         </div>
                     </div>
+                    )}
+                    {wandrrr.photos04 && (
                     <div id="slide4" className="carousel-item relative w-full">
                         <img
                             style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }}
                             src={wandrrr.photos04}
-                            className="w-full" onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = wandrrr.photos01;}}/>
+                            className="w-full" />
 
 
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -114,19 +105,24 @@ function WandrrrDetail() {
                         </div>
 
 
-                        </div>
+                        </div>)}
+                        {wandrrr.photos05 && (
                         <div id="slide5" className="carousel-item relative w-full">
-                        <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos05} className="w-full" onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = wandrrr.photos01;
-                        }} />
+                        <img style={{ width: "auto", height: 600, display: "block", margin: "0 auto" }} src={wandrrr.photos05} className="w-full"  />
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href="#slide4" className="btn btn-circle">❮</a>
                         <a href="#slide1" className="btn btn-circle">❯</a>
                         </div>
-                    </div>
+                    </div>)}
+
                     </div>
 
+                    <div>
+                        <h2>{wandrrr.description}</h2>
+                        <h2>{wandrrr.companion}</h2>
+                        <h2>{wandrrr.companion_dropdown}</h2>
+                        <h2>{wandrrr.weather}</h2>
+                    </div>
                 </div>
             </div>
 

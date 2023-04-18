@@ -4,14 +4,14 @@ import WandrrrDetail from './get_one';
 
 
 
-  function App(props) {
+
+  function App() {
     return (
       <BrowserRouter>
         {/* <Nav /> */}
         <div className="container">
         <Routes>
           {/* <Route path="new" element={<WandrrrForm />} /> */}
-
           <Route path="/wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
 
         </Routes>
