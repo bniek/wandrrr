@@ -84,13 +84,4 @@ function App() {
 }
 
 
-
-//   function App() {
-//     return (
-//       <BrowserRouter>
-//         <Nav />
-//       </BrowserRouter>
-//     );
-//   }
-
-// export default App;
+export default App;
