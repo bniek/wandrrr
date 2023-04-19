@@ -7,10 +7,10 @@ class Error(BaseModel):
     message: str
 
 class PostIn(BaseModel):
-    owner_id: int
+    owner_id: Optional[int]
     title: str
     start_date: date
-    end_date: date
+    end_date: Optional[date]
     location: str
     description: Optional[str]
     mood: Optional[str]
@@ -22,15 +22,15 @@ class PostIn(BaseModel):
     photos03: Optional[str]
     photos04: Optional[str]
     photos05: Optional[str]
-    timestamp: date
-    rating: int
+    datestamp: date = date.today()
+    rating: Optional[str]
 
 class PostOut(BaseModel):
     wandrrrs_id: int
     owner_id: int
     title: str
     start_date: date
-    end_date: date
+    end_date: Optional[date]
     location: str
     description: Optional[str]
     mood: Optional[str]
@@ -42,8 +42,8 @@ class PostOut(BaseModel):
     photos03: Optional[str]
     photos04: Optional[str]
     photos05: Optional[str]
-    timestamp: date
-    rating: int
+    datestamp: date
+    rating: Optional[str]
 
 class WandrrrRepository:
     def get_all(self, owner_id: Optional[int] = None) -> Union[Error, List[PostOut]]:
@@ -69,11 +69,11 @@ class WandrrrRepository:
                                 photos03,
                                 photos04,
                                 photos05,
-                                timestamp,
+                                datestamp,
                                 rating
                             FROM wandrrrs
                             WHERE owner_id = %s
-                            ORDER BY timestamp;
+                            ORDER BY datestamp;
                         """
                         result = db.execute(query, (owner_id,))
                     else:
@@ -95,10 +95,10 @@ class WandrrrRepository:
                                 photos03,
                                 photos04,
                                 photos05,
-                                timestamp,
+                                datestamp,
                                 rating
                             FROM wandrrrs
-                            ORDER BY timestamp;
+                            ORDER BY datestamp;
                         """
                         result = db.execute(query)
 
@@ -151,7 +151,7 @@ class WandrrrRepository:
                             photos03 = %s,
                             photos04 = %s,
                             photos05 = %s,
-                            timestamp = %s,
+                            datestamp = %s,
                             rating = %s
                         WHERE wandrrrs_id = %s
                         """,
@@ -171,7 +171,7 @@ class WandrrrRepository:
                             post.photos03,
                             post.photos04,
                             post.photos05,
-                            post.timestamp,
+                            post.datestamp,
                             post.rating,
                             wandrrr_id
                         ]
@@ -203,7 +203,7 @@ class WandrrrRepository:
             photos03=record[13],
             photos04=record[14],
             photos05=record[15],
-            timestamp=record[16],
+            datestamp=record[16],
             rating=record[17],
         )
 
@@ -232,7 +232,7 @@ class WandrrrRepository:
                             , photos03
                             , photos04
                             , photos05
-                            , timestamp
+                            , datestamp
                             , rating
                         FROM wandrrrs
                         WHERE wandrrrs_id = %s
@@ -254,7 +254,7 @@ class WandrrrRepository:
                 result = db.execute(
                     """
                     INSERT INTO wandrrrs
-                        (owner_id, title, start_date, end_date, location, description, mood, companion, companion_dropdown, weather, photos01, photos02, photos03, photos04, photos05, timestamp, rating)
+                        (owner_id, title, start_date, end_date, location, description, mood, companion, companion_dropdown, weather, photos01, photos02, photos03, photos04, photos05, datestamp, rating)
                     VALUES
                         (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING wandrrrs_id;
@@ -274,7 +274,7 @@ class WandrrrRepository:
                         post.photos03,
                         post.photos04,
                         post.photos05,
-                        post.timestamp,
+                        post.datestamp,
                         post.rating
                     ]
                 )
