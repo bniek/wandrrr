@@ -9,40 +9,40 @@ function WandrrrDetail() {
 
     useEffect(() => {
         const fetchWandrrrDetails = async () => {
-            const url = `${process.env.REACT_APP_WANDRRR_API_HOST}/wandrrrs/${wandrrrs_id}`;
-            // const fetchConfig = {
-            //     method: "get",
-            //     // headers: {
-            //     //     Authorization: `Bearer ${token}`,
-            //     // },
-            // }
-            const response = await fetch(url, {credentials: "include"});
-            if (response.ok) {
-                const data = await response.json();
-                setWandrrr(data);
-                if (data.mood === "happy"){
-                    setMoods("🙂");
-                } else if (data.mood === "sad"){
-                    setMoods("😟");
-                }
-                if (data.rating === 1 ){
-                    setRatings("⭐️")
-                }
-                if (data.rating === 2 ){
-                    setRatings("⭐️⭐️")
-                }
-                if (data.rating === 3){
-                    setRatings("⭐️⭐️⭐️")
-                }
-                if (data.rating === 4 ){
-                    setRatings("⭐️⭐️⭐️⭐️")
-                }
-                if (data.rating === 5 ){
-                    setRatings("⭐️⭐️⭐️⭐️⭐️")
+
+                const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/${wandrrrs_id}`;
+                const response = await fetch(url, {credentials: "include"});
+
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setWandrrr(data);
+                    if (data.mood === "happy"){
+                        setMoods("🙂");
+                    } else if (data.mood === "sad"){
+                        setMoods("😟");
+                    }
+                    if (data.rating === 1 ){
+                        setRatings("⭐️");
+                    }
+                    if (data.rating === 2 ){
+                        setRatings("⭐️⭐️");
+                    }
+                    if (data.rating === 3){
+                        setRatings("⭐️⭐️⭐️");
+                    }
+                    if (data.rating === 4 ){
+                        setRatings("⭐️⭐️⭐️⭐️");
+                    }
+                    if (data.rating === 5 ){
+                        setRatings("⭐️⭐️⭐️⭐️⭐️");
+                    }
+
+                }else{
+                    window.location.href = "/access-error";
                 }
 
             }
-        }
         fetchWandrrrDetails();
 
     }, [wandrrrs_id]);

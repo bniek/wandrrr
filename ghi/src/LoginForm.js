@@ -1,8 +1,8 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function Auth() {
+function Login() {
     const [formData, setFormData] = useState({});
     const navigate = useNavigate();
     const location = useLocation();
@@ -28,33 +28,7 @@ function Auth() {
     const { first_name = "", last_name = "", email = "", username = "", password = "" } = formData;
     return (
         <div align="center">
-            <form><div>
-                    <label> First Name:
-                    <input
-                    type="text"
-                    name="first_name"
-                    value={first_name}
-                    onChange={handleFormChange}
-                    /></label>
-                </div>
-                <div>
-                    <label>Last Name:
-                    <input
-                    type="text"
-                    name="last_name"
-                    value={last_name}
-                    onChange={handleFormChange}
-                    /></label>
-                </div>
-                <div>
-                    <label>Email:
-                    <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleFormChange}
-                    /></label>
-                    </div>
+            <form>
                     <div>
                     <label>
                     Username:
@@ -83,4 +57,4 @@ function Auth() {
     );
 }
 
-export default Auth;
+export default Login;
