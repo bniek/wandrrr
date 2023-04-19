@@ -8,7 +8,6 @@ import Login from './LoginForm.js';
 import Nav from './Nav';
 import WandrrrDetail from './get_one';
 import AccessError from './access-error.js';
-import TestLogin from './test.js';
 import NewWandrrrForm from './NewWandrrrForm';
 import UpdateWandrrr from './UpdateWandrrr';
 import WandrrrsList from './WandrrrsList.js';
