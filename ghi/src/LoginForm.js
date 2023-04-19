@@ -21,10 +21,13 @@ function Login() {
 
         if (isLogIn) {
             login(formData.username, formData.password);
-            window.location.href = "/test";
+
         }
 
     };
+    if (token != null){
+        window.location.href = "/wandrrrs";
+    }
     const { first_name = "", last_name = "", email = "", username = "", password = "" } = formData;
     return (
         <div align="center">

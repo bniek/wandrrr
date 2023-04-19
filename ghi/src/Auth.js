@@ -21,16 +21,17 @@ function Auth() {
 
 
 
+
         if (isLogIn) {
             login(formData.username, formData.password);
-            window.location.href = "/test";
+
         } else {
             register(formData,`${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/accounts`)
         }
 
     };
     if (token != null){
-        window.location.href = "/new";
+        window.location.href = "/wandrrrs";
     }
 
     const { first_name = "", last_name = "", email = "", username = "", password = "" } = formData;
