@@ -6,6 +6,7 @@ import "./App.css";
 import useUser from "./useUser";
 import NewWandrrrForm from './NewWandrrrForm';
 import UpdateWandrrr from './UpdateWandrrr';
+import WandrrrsList from './WandrrrsList.js';
 import Nav from './Nav';
 
 
@@ -23,8 +24,7 @@ function App(props) {
             <Route path="/login" element={<Auth />} />
             <Route path="new" element={<NewWandrrrForm user={user} />} />
             <Route path="edit/" element={<UpdateWandrrr />} />
-            <Route path="new" element={<NewWandrrrForm  />} />
-            <Route path="edit/" element={<UpdateWandrrr />} />
+            <Route path="/wandrrrs" element={<WandrrrsList />} />
           </Routes>
         </div>
       </div>
