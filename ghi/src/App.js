@@ -13,10 +13,9 @@ import Nav from './Nav';
 function App(props) {
   const { token } = useContext (AuthContext);
   const user = useUser(token);
-  // console.log(user)
     return (
       <div>
-        <Nav />
+        <Nav user={user} />
         <div className="container">
           <Routes>
             <Route path="/" element={<Auth />} />
