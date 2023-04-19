@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import useToken, { AuthContext } from '@galvanize-inc/jwtdown-for-react';
+import { useContext } from 'react';
 
-const BASE_URL = 'http://localhost:000'; // replace with backend API base URL
 
-const getPost = async (id) => {
-  const response = await fetch(`${BASE_URL}/wandrrrs/${id}`);
+const BASE_URL = 'http://localhost:8000'; // replace with backend API base URL
+
+const getPost = async (wandrrrs_id, token) => {
+  const response = await fetch(`${BASE_URL}/wandrrrs/${wandrrrs_id}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
   const data = await response.json();
   return data;
 };
 
-const updatePost = async (id, post) => {
-  const response = await fetch(`${BASE_URL}/wandrrrs/${id}`, {
+const updatePost = async (wandrrrs_id, post, token) => {
+  const response = await fetch(`${BASE_URL}/wandrrrs/${wandrrrs_id}`, {
     method: 'PUT',
     headers: {
+      'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(post),
@@ -22,7 +30,8 @@ const updatePost = async (id, post) => {
 };
 
 
-function UpdateWandrrr() {
+function UpdateWandrrr(props) {
+  const { token } = useContext (AuthContext);
   const [ownerId, setOwnerId] = useState('');
   const fetchData = async () => {
     const url = 'http://localhost:8000/token';
@@ -40,12 +49,13 @@ function UpdateWandrrr() {
 
     useEffect(() => {
       async function fetchPost() {
-        const response = await getPost(id); // fetch the post data from the server
+        const response = await getPost(id, token); // fetch the post data from the server with the token
         setPost(response.data); // set the post state with the fetched data
         setFormValues(response.data); // set the form values with the fetched data
-        }
-        fetchPost();
-    }, [id]);
+      }
+      fetchPost();
+    }, [id, token]);
+
 
     const handleOwnerIdChange = (event) => {
       const value = event.target.value;
