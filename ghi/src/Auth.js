@@ -19,12 +19,20 @@ function Auth() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+
+
         if (isLogIn) {
             login(formData.username, formData.password);
+            window.location.href = "/test";
         } else {
-            register(formData,`${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/accounts`);
+            register(formData,`${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/accounts`)
         }
+
     };
+    if (token != null){
+        window.location.href = "/new";
+    }
+
     const { first_name = "", last_name = "", email = "", username = "", password = "" } = formData;
     return (
         <div align="center">

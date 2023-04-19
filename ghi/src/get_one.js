@@ -6,6 +6,8 @@ function WandrrrDetail() {
     const { wandrrrs_id } = useParams();
     const [moods, setMoods] = useState("");
     const [ratings, setRatings] = useState("");
+    const [companions, setCompanions] = useState("");
+    const [weathers, setWeathers] = useState("");
 
     useEffect(() => {
         const fetchWandrrrDetails = async () => {
@@ -13,33 +15,127 @@ function WandrrrDetail() {
                 const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/${wandrrrs_id}`;
                 const response = await fetch(url, {credentials: "include"});
 
-
                 if (response.ok) {
                     const data = await response.json();
                     setWandrrr(data);
-                    if (data.mood === "happy"){
-                        setMoods("🙂");
-                    } else if (data.mood === "sad"){
-                        setMoods("😟");
+                    if (data.mood === "0"){
+                        setMoods("😶");
                     }
-                    if (data.rating === 1 ){
+                    if (data.mood === "1"){
+                        setMoods("🙂");
+                    } if (data.mood === "2"){
+                        setMoods("🥰");
+                    } if (data.mood === "3"){
+                        setMoods("😇");
+                    } if (data.mood === "4"){
+                        setMoods("🤣");
+                    } if (data.mood === "5"){
+                        setMoods("🥳");
+                    } if (data.mood === "6"){
+                        setMoods("🤤");
+                    } if (data.mood === "7"){
+                        setMoods("🤒");
+                    } if (data.mood === "8"){
+                        setMoods("🥹");
+                    } if (data.mood === "9"){
+                        setMoods("😅");
+                    } if (data.mood === "10"){
+                        setMoods("😒");
+                    } if (data.mood === "11"){
+                        setMoods("😞");
+                    } if (data.mood === "12"){
+                        setMoods("😕");
+                    } if (data.mood === "13"){
+                        setMoods("😢");
+                    } if (data.mood === "14"){
+                        setMoods("😡");
+                    } if (data.mood === "15"){
+                        setMoods("🤯");
+                    } if (data.mood === "16"){
+                        setMoods("🤢");
+                    } if (data.mood === "17"){
+                        setMoods("😴");
+                    } if (data.mood === "18"){
+                        setMoods("🥱");
+                    } if (data.mood === "19"){
+                        setMoods("💀");
+                    }
+
+                    if (data.companion_dropdown === "dog1"){
+                        setCompanions("🐶");
+                    } if (data.companion_dropdown === "dog2"){
+                        setCompanions("🦮");
+                    } if (data.companion_dropdown === "dog3"){
+                        setCompanions("🐕‍🦺");
+                    } if (data.companion_dropdown === "dog4"){
+                        setCompanions("🐩");
+                    } if (data.companion_dropdown === "cat2"){
+                        setCompanions("🐱");
+                    } if (data.companion_dropdown === "cat2"){
+                        setCompanions("🐈");
+                    } if (data.companion_dropdown === "cat3"){
+                        setCompanions("🐈‍⬛");
+                    } if (data.companion_dropdown === "baby1"){
+                        setCompanions("👶");
+                    } if (data.companion_dropdown === "bestfriend1"){
+                        setCompanions("👯‍♂️");
+                    } if (data.companion_dropdown === "bestfriend2"){
+                        setCompanions("👯‍♂️");
+                    } if (data.companion_dropdown === "bestfriend3"){
+                        setCompanions("👫");
+                    } if (data.companion_dropdown === "bestfriend4"){
+                        setCompanions("👭");
+                    } if (data.companion_dropdown === "bestfriend5"){
+                        setCompanions("👬");
+                    } if (data.companion_dropdown === "family1"){
+                        setCompanions("👨‍👨‍👦");
+                    } if (data.companion_dropdown === "family2"){
+                        setCompanions("👩‍👩‍👦");
+                    } if (data.companion_dropdown === "family3"){
+                        setCompanions("👨‍👩‍👦‍👦");
+                    } if (data.companion_dropdown === "family4"){
+                        setCompanions("👪");
+                    } if (data.companion_dropdown === "family5"){
+                        setCompanions("👩‍👦");
+                    } if (data.companion_dropdown === "family6"){
+                        setCompanions("👨‍👦");
+                    } if (data.companion_dropdown === "couple1"){
+                        setCompanions("👩‍❤️‍👨");
+                    } if (data.companion_dropdown === "couple2"){
+                        setCompanions("👩‍❤️‍👩");
+                    } if (data.companion_dropdown === "couple3"){
+                        setCompanions("💑");
+                    } if (data.companion_dropdown === "couple4"){
+                        setCompanions("👨‍❤️‍👨");
+                    }
+                    if (data.weather==="rainy") { setWeathers("🌧️");
+                    } if (data.weather==="sunny") { setWeathers("🌞");
+                    } if (data.weather==="cloudy") { setWeathers("🌤️");
+                    } if (data.weather==="tornado") { setWeathers("🌪️");
+                    } if (data.weather==="stormy") { setWeathers("⛈️");
+                    } if (data.weather==="snowy") { setWeathers("⛄️");
+                    } if (data.weather==="windy") { setWeathers("🌬️");
+                    } if (data.weather==="foggy") { setWeathers("🌫️");}
+
+
+                    if (data.rating === "1" ){
                         setRatings("⭐️");
                     }
-                    if (data.rating === 2 ){
+                    if (data.rating === "2" ){
                         setRatings("⭐️⭐️");
                     }
-                    if (data.rating === 3){
+                    if (data.rating === "3" ){
                         setRatings("⭐️⭐️⭐️");
                     }
-                    if (data.rating === 4 ){
+                    if (data.rating === "4" ){
                         setRatings("⭐️⭐️⭐️⭐️");
                     }
-                    if (data.rating === 5 ){
+                    if (data.rating === "5" ){
                         setRatings("⭐️⭐️⭐️⭐️⭐️");
                     }
 
                 }else{
-                    window.location.href = "/access-error";
+                    window.location.href = "/error";
                 }
 
             }
@@ -60,7 +156,7 @@ function WandrrrDetail() {
                     <h2>{new Date(wandrrr.start_date).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric' })}{wandrrr.end_date && (` - ${new Date(wandrrr.end_date).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric' })}`)}</h2>
 
 
-                    <h2>{moods}   {ratings}</h2>
+                    <h2>{moods}   {ratings}   {weathers}</h2>
 
 
 
@@ -119,9 +215,9 @@ function WandrrrDetail() {
 
                     <div>
                         <h2>{wandrrr.description}</h2>
-                        <h2>{wandrrr.companion}</h2>
-                        <h2>{wandrrr.companion_dropdown}</h2>
-                        <h2>{wandrrr.weather}</h2>
+                        <h2>{companions}  {wandrrr.companion}</h2>
+
+
                     </div>
                 </div>
             </div>

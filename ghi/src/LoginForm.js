@@ -21,9 +21,9 @@ function Login() {
 
         if (isLogIn) {
             login(formData.username, formData.password);
-        } else {
-            register(formData,`${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/accounts`);
+            window.location.href = "/test";
         }
+
     };
     const { first_name = "", last_name = "", email = "", username = "", password = "" } = formData;
     return (
