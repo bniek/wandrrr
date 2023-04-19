@@ -13,7 +13,7 @@ import Nav from './Nav';
 function App(props) {
   const { token } = useContext (AuthContext);
   const user = useUser(token);
-  console.log(user)
+  // console.log(user)
     return (
       <div>
         <Nav />

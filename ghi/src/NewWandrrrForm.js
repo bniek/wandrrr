@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import useUser from "./useUser";
+import useToken, { AuthContext } from '@galvanize-inc/jwtdown-for-react';
+import { useContext } from 'react';
+
 
 
 
 function NewWandrrrForm(props) {
-  const user = props.user
-  // const userId = user.id
-  // console.log(userId)
+
+  const { token } = useContext (AuthContext);
 
 
-  // const fetchData = async () => {
-  //   const url = 'http://localhost:8000/token/';
-  //   const response = await fetch(url);
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setOwnerId(data.id);
-  //   }
-  // }
 
-  const [ownerId, setOwnerId] = useState('');
   const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -36,12 +29,6 @@ function NewWandrrrForm(props) {
   const [rating, setRating] = useState('');
 
 
-
-
-  const handleOwnerIdChange = (event) => {
-      const value = event.target.value;
-      setOwnerId(value);
-    }
 
   const handleTitleChange = (event) => {
       const value = event.target.value;
@@ -120,7 +107,7 @@ function NewWandrrrForm(props) {
   const handleSubmit = async (event) => {
       event.preventDefault();
       const data = {};
-      data.owner_id = ownerId;
+      data.owner_id = props.user.id;
       data.title = title;
       data.start_date = startDate;
       data.end_date = endDate;
@@ -146,6 +133,7 @@ function NewWandrrrForm(props) {
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       },
     };
     const response = await fetch(wandrrrUrl, fetchConfig);
