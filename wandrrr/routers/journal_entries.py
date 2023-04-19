@@ -24,8 +24,16 @@ router = APIRouter()
 @router.get("/wandrrrs/", response_model=Union[List[PostOut], Error])
 def get_all_posts(
      repo: WandrrrRepository = Depends(),
+     account_data: dict = Depends(
+        authenticator.get_current_account_data
+     ),
 ):
-    return repo.get_all()
+    if account_data is not None:
+        owner_id = account_data["id"]
+        return repo.get_all(owner_id)
+    else:
+        raise HTTPException(status_code=401, detail="You do not have the permission to view this")
+
 
 @router.get("/wandrrrs/{wandrrrs_id}", response_model=Optional[PostOut], )
 def get_post(

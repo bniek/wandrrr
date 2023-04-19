@@ -11,6 +11,7 @@ import AccessError from './access-error.js';
 import TestLogin from './test.js';
 import NewWandrrrForm from './NewWandrrrForm';
 import UpdateWandrrr from './UpdateWandrrr';
+import WandrrrsList from './WandrrrsList.js';
 
 
 
@@ -30,7 +31,8 @@ function App(props) {
             <Route path="edit/" element={<UpdateWandrrr />} />
             <Route path="/error" element={<AccessError />} />
             <Route path="/wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
-            <Route path="/test" element={<TestLogin />} />
+
+            <Route path="/wandrrrs" element={<WandrrrsList />} />
           </Routes>
         </div>
       </div>
