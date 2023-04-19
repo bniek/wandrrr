@@ -19,25 +19,103 @@ Today, I worked on:
 As a group:
 
 * Pair programmed the database table fields, installed and connected Bee Keeper
-*
 
-
-##
+## Thursday, March 30
 
 Today, I worked on:
 
-*
+* Finished my endpoint code, will work with SinLin on auth over the weekend
 
 As a group:
 
-*
+* Decided on using tailwind over bootstrap for front end
 
-##
+## Friday, March 31
 
 Today, I worked on:
 
-*
+* Tackled authentication
+
+
+## Saturday, April 1
+
+Today, I worked on:
+
+* nothing, took a rest day
+
+## Sunday, April 2
+
+Today, I worked on:
+
+* continued to work on authentication , create account
+
+
+## Monday, April 3
+
+Today, I worked on:
+
+* authentication , pair programming with SinLin to debug= can create account (insert in database) but not returning
 
 As a group:
 
-*
+* Seir Brandon M came to help with some auth debugging. Completed debugging.
+* Confirmed all endpoints are working correctly (without auth) in fast api.
+* Did several merge requests, everyone pushed code to main and synchronized their code
+
+## Tuesday, April 4
+
+Today, I worked on:
+
+* installed Daisy UI, looked at documentation
+
+
+## Wednesday, April 5
+
+Today, I worked on:
+
+* Started on the Front End coding for the get detailed view
+
+As a group:
+
+* Decided to move forward with SinLin's code for protecting endpoints, user can only view, edit and delete their posts
+
+## Thursday, April 6
+
+Today, I worked on:
+
+* Continue to write FE code for
+
+As a group:
+
+* Completed pair programming and merge request for protected endpoints
+
+## Friday, April 7
+
+Today, I worked on:
+
+* FE coding and debugging for the view detailed post page
+
+As a group:
+
+* Got instructor help for FE authentication
+* Began on the color palette for the site
+* Discussed what we will work on during spring break
+
+## BREAK April 8 - April 16
+
+During the this week:
+
+* I lightly worked on getting the photo carousel working
+
+## April 17
+
+Today, I worked on:
+
+* Finished the photo carousel
+* Made more sample entries and began some front end styling
+
+As a group:
+
+* We finished the login authentication
+* Discussed further styling and standardization
+* Still need to discuss field input standardization
