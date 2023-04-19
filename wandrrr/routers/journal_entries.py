@@ -8,6 +8,8 @@ from queries.journal_entries import (
     PostOut,
     WandrrrRepository,
 )
+from routers.accounts import AccountToken
+from jwtdown_fastapi.authentication import Token
 
 router = APIRouter()
 
@@ -64,6 +66,7 @@ def edit_post(
         raise HTTPException(status_code=403, detail="You do not have the permission to edit this")
     else:
         return repo.update(wandrrrs_id, post)
+
 
 
 @router.delete("/wandrrrs/{wandrrrs_id}", response_model=bool)
