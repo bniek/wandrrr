@@ -21,10 +21,6 @@ function Auth() {
 
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-
 
         if (isLogIn) {
             login(formData.username, formData.password);
