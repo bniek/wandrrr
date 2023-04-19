@@ -123,7 +123,7 @@ function NewWandrrrForm(props) {
       data.photos04 = photos04;
       data.photos05 = photos05;
       data.rating = rating;
-      console.log(data)
+
 
 
 
@@ -139,8 +139,6 @@ function NewWandrrrForm(props) {
     const response = await fetch(wandrrrUrl, fetchConfig);
     if (response.ok) {
       const newWandrrr = await response.json();
-      console.log(newWandrrr);
-
       setTitle('');
       setStartDate('');
       setEndDate('');
@@ -156,7 +154,7 @@ function NewWandrrrForm(props) {
       setPhotos04('');
       setPhotos05('');
       setRating('');
-
+      window.location.href = "/wandrrrs";
 
     }
   }
@@ -298,4 +296,5 @@ function NewWandrrrForm(props) {
         </div>
       );
 }
+
 export default NewWandrrrForm;
