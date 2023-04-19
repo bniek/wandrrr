@@ -1,0 +1,17 @@
+
+
+form {
+    background-color: #FCFBE4;
+    border-color: #FBC208;
+    border-width: thick;
+}
+
+.main {
+    background-color: #F8F8F8;
+}
+
+
+.inputBorder {
+    border-color: #FBC208;
+}
+ /* border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700 */

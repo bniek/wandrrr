@@ -7,6 +7,7 @@ import useUser from "./useUser";
 import NewWandrrrForm from './NewWandrrrForm';
 import UpdateWandrrr from './UpdateWandrrr';
 import Nav from './Nav';
+import './App.css'
 
 
 
@@ -16,17 +17,13 @@ function App(props) {
     return (
       <div>
         <Nav user={user} />
-        <div className="container">
           <Routes>
             <Route path="/" element={<Auth />} />
             <Route path="/signup" element={<Auth />} />
             <Route path="/login" element={<Auth />} />
             <Route path="new" element={<NewWandrrrForm user={user} />} />
             <Route path="edit/" element={<UpdateWandrrr />} />
-            <Route path="new" element={<NewWandrrrForm  />} />
-            <Route path="edit/" element={<UpdateWandrrr />} />
           </Routes>
-        </div>
       </div>
     );
 }

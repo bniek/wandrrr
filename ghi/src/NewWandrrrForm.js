@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import useUser from "./useUser";
 import useToken, { AuthContext } from '@galvanize-inc/jwtdown-for-react';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './form.css';
+
 
 
 
@@ -11,7 +13,7 @@ function NewWandrrrForm(props) {
   const { token } = useContext (AuthContext);
 
 
-
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -156,6 +158,7 @@ function NewWandrrrForm(props) {
       setPhotos04('');
       setPhotos05('');
       setRating('');
+      navigate('/wandrrrs/');
 
 
     }
@@ -167,32 +170,34 @@ function NewWandrrrForm(props) {
     // }, []);
 
     return (
+      <div className="contain">
         <div className="m-auto py-20">
-              <form className="shadow-lg max-w-xl m-auto py-10 mt-10 px-12 border" onSubmit={handleSubmit} id="create-wandrrr-form">
+        <h1 className="text-6xl text-[#FBC208] text-center" style={{ fontFamily: 'Lilita One' }}>NEW!</h1>
+              <form className="rounded-lg shadow-lg max-w-xl m-auto py-10 mt-10 px-12 border" onSubmit={handleSubmit} id="create-wandrrr-form">
                 <div className="form-floating mb-3">
-                  <label className="py-2" htmlFor="title">Title</label>
-                  <input onChange={handleTitleChange} placeholder="The best day of my life" required type="text" name="title" id="title" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <label className="py-2 text-[#FBC208]" htmlFor="title">Title</label>
+                  <input onChange={handleTitleChange} placeholder="The best day of my life" required type="text" name="title" id="title" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label className="py-2" htmlFor="start_date">Start date</label>
-                  <input onChange={handleStartDateChange} placeholder="Your Wandrrr's start date" required type="date" name="start_date" id="start_date" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <label className="py-2 text-[#FBC208]" htmlFor="start_date">Start date</label>
+                  <input onChange={handleStartDateChange} required type="date" name="start_date" id="start_date" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="end_date">End date </label>
-                  <input onChange={handleEndDateChange} placeholder="Your Wandrrr's end date" type="date" name="end_date" id="end_date" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <label className="py-2 text-[#FBC208]" htmlFor="end_date">End date </label>
+                  <input onChange={handleEndDateChange} type="date" name="end_date" id="end_date" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="location">Location</label>
-                  <input onChange={handleLocationChange} placeholder="Tokyo, Japan" required type="text" name="location" id="location" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <label className="py-2 text-[#FBC208]" htmlFor="location">Location</label>
+                  <input onChange={handleLocationChange} placeholder="Tokyo, Japan" required type="text" name="location" id="location" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="Description">Description</label>
-                  <textarea onChange={handleDescriptionChange} required className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" id="description" rows="6" name="description" ></textarea>
+                  <label className="py-2 text-[#FBC208]" htmlFor="Description">Description</label>
+                  <textarea onChange={handleDescriptionChange} required className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" id="description" rows="6" name="description" ></textarea>
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="mood">Mood</label>
-                  <select onChange={handleMoodChange} id="mood" name="mood" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700">
-                    <option value="0">😶</option>
+                  <label className="py-2 text-[#FBC208]" htmlFor="mood">Mood</label>
+                  <select onChange={handleMoodChange} id="mood" name="mood" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700">
+                    <option value="0"></option>
                     <option value="1">🙂</option>
                     <option value="2">🥰</option>
                     <option value="3">😇</option>
@@ -215,11 +220,11 @@ function NewWandrrrForm(props) {
                   </select>
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="companion">Who was with you?</label>
-                  <input onChange={handleCompanionChange} placeholder="Bennie, Charlene, Elaine, and Sinlin"  type="text" name="companion" id="companion" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <label className="py-2 text-[#FBC208]" htmlFor="companion">Who was with you?</label>
+                  <input onChange={handleCompanionChange} placeholder="Bennie, Charlene, Elaine, and Sinlin"  type="text" name="companion" id="companion" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <select onChange={handleCompanionDropdownChange} id="companion_dropdown" name="companion_dropdown" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700">
+                  <select onChange={handleCompanionDropdownChange} id="companion_dropdown" name="companion_dropdown" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700">
                     <option value=""></option>
                     <option value="dog1">🐶</option>
                     <option value="dog2">🦮</option>
@@ -247,9 +252,9 @@ function NewWandrrrForm(props) {
                   </select>
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="weather">Weather</label>
-                  <select onChange={handleWeatherChange} id="weather" name="weather" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700">
-                    <option value="">How was the weather?</option>
+                  <label className="py-2 text-[#FBC208]" htmlFor="weather">Weather</label>
+                  <select onChange={handleWeatherChange} id="weather" name="weather" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700">
+                    <option value=""></option>
                     <option value="rainy">🌧️</option>
                     <option value="sunny">🌞</option>
                     <option value="cloudy">🌤️</option>
@@ -261,9 +266,9 @@ function NewWandrrrForm(props) {
                   </select>
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="rating">Rating</label>
-                  <select onChange={handleRatingChange} id="rating" name="rating" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700">
-                    <option value="">How would you rate this Wandrrr?</option>
+                  <label className="py-2 text-[#FBC208]" htmlFor="rating">Rating</label>
+                  <select onChange={handleRatingChange} id="rating" name="rating" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700">
+                    <option value=""></option>
                     <option value="1">⭐️</option>
                     <option value="2">⭐️⭐️</option>
                     <option value="3">⭐️⭐️⭐️</option>
@@ -272,29 +277,29 @@ function NewWandrrrForm(props) {
                   </select>
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="photos01">Cover photo</label>
-                  <input onChange={handlePhotos01Change} placeholder="URL" required type="text" name="photos01" id="photos01" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <label className="py-2 text-[#FBC208]" htmlFor="photos01">Cover photo</label>
+                  <input onChange={handlePhotos01Change} placeholder="URL" required type="text" name="photos01" id="photos01" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="photos02">Another photo</label>
-                  <input onChange={handlePhotos02Change}  placeholder="URL" type="text" name="photos02" id="photos02" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <label className="py-2 text-[#FBC208]" htmlFor="photos02">Another photo</label>
+                  <input onChange={handlePhotos02Change}  placeholder="URL" type="text" name="photos02" id="photos02" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
 
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="photos03">Another photo</label>
-                  <input onChange={handlePhotos03Change}  placeholder="URL" type="text" name="photos03" id="photos03" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <label className="py-2 text-[#FBC208]" htmlFor="photos03">Another photo</label>
+                  <input onChange={handlePhotos03Change}  placeholder="URL" type="text" name="photos03" id="photos03" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="photos04">Another photo</label>
-                  <input onChange={handlePhotos04Change}  placeholder="URL" type="text" name="photos04" id="photos04" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <label className="py-2 text-[#FBC208]" htmlFor="photos04">Another photo</label>
+                  <input onChange={handlePhotos04Change}  placeholder="URL" type="text" name="photos04" id="photos04" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label htmlFor="photos05">Another photo</label>
-                  <input onChange={handlePhotos05Change}  placeholder="URL" type="text" name="photos05" id="photos05" className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700" />
+                  <label className="py-2 text-[#FBC208]" htmlFor="photos05">Another photo</label>
+                  <input onChange={handlePhotos05Change}  placeholder="URL" type="text" name="photos05" id="photos05" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
-                {/* <input onChange={handleOwnerIdChange} value={userId} type="hidden" name="owner_id" id="owner_id" /> */}
-                <button className="mt-4 w-full bg-gray-400 hover:bg-gray-600 text-white border py-3 px-6 font-semibold text-md rounded" type="submit">Create!</button>
+                <button className="mt-4 w-full bg-[#FBC208] hover:bg-[#FD8900] text-white border py-3 px-6 font-semibold text-md rounded" type="submit">Done</button>
               </form>
+        </div>
         </div>
       );
 }
