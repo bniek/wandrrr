@@ -9,21 +9,27 @@ import Nav from './Nav';
 import WandrrrDetail from './get_one';
 
 
+import NewWandrrrForm from './NewWandrrrForm';
+import UpdateWandrrr from './UpdateWandrrr';
+import Nav from './Nav';
+
+
 
 function App(props) {
   const { token } = useContext (AuthContext);
   const user = useUser(token);
-  console.log(user)
     return (
       <div>
-        <Nav />
+        <Nav user={user} />
         <div className="container">
           <Routes>
             <Route path="/" element={<Auth />} />
             <Route path="/signup" element={<Auth />} />
-            <Route path="/login" element={<Login />} />
-
-            <Route path="/wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
+            <Route path="/login" element={<Auth />} />
+            <Route path="new" element={<NewWandrrrForm user={user} />} />
+            <Route path="edit/" element={<UpdateWandrrr />} />
+            <Route path="new" element={<NewWandrrrForm  />} />
+            <Route path="edit/" element={<UpdateWandrrr />} />
           </Routes>
         </div>
       </div>
