@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import useToken, { AuthContext } from "@galvanize-inc/jwtdown-for-react";
+import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 const BASE_URL = "http://localhost:8000"; // replace with backend API base URL
 
@@ -30,7 +30,6 @@ const updatePost = async (wandrrrs_id, post, token) => {
 function UpdateWandrrr(props) {
   const { token } = useContext(AuthContext);
   const [ownerId, setOwnerId] = useState("");
-  const { id } = useParams();
   const fetchData = async () => {
     const url = "http://localhost:8000/token";
     const response = await fetch(url);
@@ -45,20 +44,20 @@ function UpdateWandrrr(props) {
   // const { id } = useParams();
   const queryParams = new URLSearchParams(window.location.search);
 
-  const [post, setPost] = useState({});
+  // const [setPost] = useState({});
   const [formValues, setFormValues] = useState({});
 
-  useEffect(() => {
-    async function fetchPost() {
-      const id = queryParams.get("id");
-      console.log(id, token);
-      if (!id || !token) throw new Error("ID undefined");
-      const response = await getPost(id, token); // fetch the post data from the server with the token
-      setPost(response); // set the post state with the fetched data
-      setFormValues(response); // set the form values with the fetched data
-    }
-    fetchPost();
-  }, [token]);
+  // useEffect(() => {
+  //   async function fetchPost() {
+  //     const id = queryParams.get("id");
+  //     console.log(id, token);
+  //     if (!id || !token) throw new Error("ID undefined");
+  //     const response = await getPost(id, token); // fetch the post data from the server with the token
+  //     setPost(response); // set the post state with the fetched data
+  //     setFormValues(response); // set the form values with the fetched data
+  //   }
+  //   fetchPost();
+  // }, [token]);
 
   const handleOwnerIdChange = (event) => {
     const value = event.target.value;
