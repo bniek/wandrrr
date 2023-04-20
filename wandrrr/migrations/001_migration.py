@@ -39,7 +39,10 @@ steps = [
             timestamp TIMESTAMPTZ,
             rating VARCHAR,
             CONSTRAINT pk_wandrrrs PRIMARY KEY (wandrrrs_id),
-            CONSTRAINT fk_accounts FOREIGN KEY (owner_id) REFERENCES accounts (id) ON DELETE CASCADE
+            CONSTRAINT fk_accounts FOREIGN KEY (owner_id)
+            REFERENCES accounts (id) ON DELETE CASCADE
+
+
         );
         """,
         # "Down" SQL statement

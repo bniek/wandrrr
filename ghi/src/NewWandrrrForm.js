@@ -9,6 +9,7 @@ import './form.css';
 
 
 function NewWandrrrForm(props) {
+  const { token } = useContext(AuthContext);
 
   const { token } = useContext (AuthContext);
   const currentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
@@ -34,78 +35,77 @@ function NewWandrrrForm(props) {
 
 
   const handleTitleChange = (event) => {
-      const value = event.target.value;
-      setTitle(value);
-    }
+    const value = event.target.value;
+    setTitle(value);
+  };
 
   const handleStartDateChange = (event) => {
-      const value = event.target.value;
-      setStartDate(value);
-    }
+    const value = event.target.value;
+    setStartDate(value);
+  };
 
   const handleEndDateChange = (event) => {
-      const value = event.target.value;
-      setEndDate(value);
-    }
+    const value = event.target.value;
+    setEndDate(value);
+  };
   const handleLocationChange = (event) => {
-      const value = event.target.value;
-      setLocation(value);
-    }
+    const value = event.target.value;
+    setLocation(value);
+  };
   const handleDescriptionChange = (event) => {
-      const value = event.target.value;
-      setDescription(value);
-    }
+    const value = event.target.value;
+    setDescription(value);
+  };
 
   const handleMoodChange = (event) => {
-      const value = event.target.value;
-      setMood(value);
-    }
+    const value = event.target.value;
+    setMood(value);
+  };
 
   const handleCompanionChange = (event) => {
-      const value = event.target.value;
-      setCompanion(value);
-    }
+    const value = event.target.value;
+    setCompanion(value);
+  };
 
   const handleCompanionDropdownChange = (event) => {
-      const value = event.target.value;
-      setCompanionDropdown(value);
-    }
+    const value = event.target.value;
+    setCompanionDropdown(value);
+  };
 
   const handleWeatherChange = (event) => {
-      const value = event.target.value;
-      setWeather(value);
-    }
+    const value = event.target.value;
+    setWeather(value);
+  };
 
   const handlePhotos01Change = (event) => {
-      const value = event.target.value;
-      setPhotos01(value);
-    }
+    const value = event.target.value;
+    setPhotos01(value);
+  };
 
   const handlePhotos02Change = (event) => {
-      const value = event.target.value;
-      setPhotos02(value);
-    }
+    const value = event.target.value;
+    setPhotos02(value);
+  };
 
   const handlePhotos03Change = (event) => {
-      const value = event.target.value;
-      setPhotos03(value);
-    }
+    const value = event.target.value;
+    setPhotos03(value);
+  };
 
   const handlePhotos04Change = (event) => {
-      const value = event.target.value;
-      setPhotos04(value);
-    }
+    const value = event.target.value;
+    setPhotos04(value);
+  };
 
   const handlePhotos05Change = (event) => {
-      const value = event.target.value;
-      setPhotos05(value);
-    }
+    const value = event.target.value;
+    setPhotos05(value);
+  };
 
-    const handleRatingChange = (event) => {
-      const value = event.target.value;
-      setRating(value);
-    }
-
+  const handleRatingChange = (event) => {
+    const value = event.target.value;
+    setRating(value);
+  };
 
   const handleSubmit = async (event) => {
       event.preventDefault();
@@ -133,11 +133,11 @@ function NewWandrrrForm(props) {
 
     const wandrrrUrl = `http://localhost:8000/wandrrrs`;
     const fetchConfig = {
-      method: 'post',
+      method: "post",
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     };
     const response = await fetch(wandrrrUrl, fetchConfig);
@@ -164,12 +164,11 @@ function NewWandrrrForm(props) {
 
 
     }
-  }
+  };
 
-
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
+  // useEffect(() => {
+  //     fetchData();
+  // }, []);
 
     return (
       <div className="contain">

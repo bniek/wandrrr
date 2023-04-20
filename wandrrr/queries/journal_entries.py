@@ -3,8 +3,10 @@ from typing import List, Optional, Union
 from datetime import date, datetime
 from queries.pool import pool
 
+
 class Error(BaseModel):
     message: str
+
 
 class PostIn(BaseModel):
     owner_id: Optional[int]
@@ -24,6 +26,7 @@ class PostIn(BaseModel):
     photos05: Optional[str]
     timestamp: datetime
     rating: Optional[str]
+
 
 class PostOut(BaseModel):
     wandrrrs_id: int
@@ -45,8 +48,12 @@ class PostOut(BaseModel):
     timestamp: datetime
     rating: Optional[str]
 
+
 class WandrrrRepository:
-    def get_all(self, owner_id: Optional[int] = None) -> Union[Error, List[PostOut]]:
+    def get_all(
+            self,
+            owner_id: Optional[int] = None
+            ) -> Union[Error, List[PostOut]]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -110,7 +117,6 @@ class WandrrrRepository:
             print(e)
             return {"message": "Could not get all wandrrrs"}
 
-
     def delete(self, wandrrr_id: int) -> bool:
         try:
             with pool.connection() as conn:
@@ -126,8 +132,6 @@ class WandrrrRepository:
         except Exception as e:
             print(e)
             return False
-
-
 
     def update(self, wandrrr_id: int, post: PostIn) -> Union[PostOut, Error]:
         try:
@@ -247,7 +251,6 @@ class WandrrrRepository:
             print(e)
             return {"message": "Could not get that wandrrr"}
 
-
     def create(self, post: PostIn) -> PostOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -256,10 +259,12 @@ class WandrrrRepository:
                     INSERT INTO wandrrrs
                         (owner_id, title, start_date, end_date, location, description, mood, companion, companion_dropdown, weather, photos01, photos02, photos03, photos04, photos05, timestamp, rating)
                     VALUES
-                        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        (%s, %s, %s, %s, %s, %s, %s, %s, %s,
+                        %s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING wandrrrs_id;
                     """,
-                    [   post.owner_id,
+                    [
+                        post.owner_id,
                         post.title,
                         post.start_date,
                         post.end_date,

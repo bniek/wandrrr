@@ -1,21 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import "./index.css";
 // import reportWebVitals from './reportWebVitals';
-import App from './App';
-import { AuthProvider } from '@galvanize-inc/jwtdown-for-react';
-import './form.css';
+import App from "./App";
+import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter basename="/">
-      <AuthProvider tokenUrl={`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`}>
-        <App className="main" />
+      <AuthProvider
+        tokenUrl={`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`}
+      >
+        <App />
       </AuthProvider>
     </BrowserRouter>
-
   </React.StrictMode>
 );
 

@@ -3,6 +3,7 @@ from fastapi import Depends
 from jwtdown_fastapi.authentication import Authenticator
 from queries.accounts import AccountRepo, AccountOut, AccountIn
 
+
 class MyAuthenticator(Authenticator):
     async def get_account_data(
         self,
@@ -34,8 +35,3 @@ class MyAuthenticator(Authenticator):
 # # Use your private and public keys in the authenticator
 authenticator = MyAuthenticator(
     os.environ["SIGNING_KEY"])
-
-#     private_key,
-#     algorithm=ALGORITHMS.RS256,
-#     public_key=public_key,exp=one_day,
-# )
