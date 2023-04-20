@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 const BASE_URL = "http://localhost:8000"; // replace with backend API base URL
 
-const getPost = async (wandrrrs_id, token) => {
-  const response = await fetch(`${BASE_URL}/wandrrrs/${wandrrrs_id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  const data = await response.json();
-  return data;
-};
+// const getPost = async (wandrrrs_id, token) => {
+//   const response = await fetch(`${BASE_URL}/wandrrrs/${wandrrrs_id}`, {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
+//   const data = await response.json();
+//   return data;
+// };
 
 const updatePost = async (wandrrrs_id, post, token) => {
   const response = await fetch(`${BASE_URL}/wandrrrs/${wandrrrs_id}`, {
