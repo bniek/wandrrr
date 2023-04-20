@@ -11,7 +11,7 @@ import AccessError from './access-error.js';
 import NewWandrrrForm from './NewWandrrrForm';
 import UpdateWandrrr from './UpdateWandrrr';
 import WandrrrsList from './WandrrrsList.js';
-
+import LandingPage from './LandingPage.js';
 
 
 
@@ -22,7 +22,7 @@ function App(props) {
       <div>
         <Nav user={user} />
           <Routes>
-            <Route path="/" element={<Auth />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/signup" element={<Auth />} />
             <Route path="/login" element={<Login />} />
             <Route path="new" element={<NewWandrrrForm user={user} />} />
