@@ -22,7 +22,7 @@ class PostIn(BaseModel):
     photos03: Optional[str]
     photos04: Optional[str]
     photos05: Optional[str]
-    timestamp: datetime = datetime.now()
+    timestamp: datetime
     rating: Optional[str]
 
 class PostOut(BaseModel):
@@ -98,7 +98,7 @@ class WandrrrRepository:
                                 timestamp,
                                 rating
                             FROM wandrrrs
-                            ORDER BY timestamp;
+                            ORDER BY timestamp DESC;
                         """
                         result = db.execute(query)
 

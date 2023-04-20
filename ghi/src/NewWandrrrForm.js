@@ -11,6 +11,7 @@ import './form.css';
 function NewWandrrrForm(props) {
 
   const { token } = useContext (AuthContext);
+  const currentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
 
   const navigate = useNavigate();
@@ -109,6 +110,7 @@ function NewWandrrrForm(props) {
   const handleSubmit = async (event) => {
       event.preventDefault();
       const data = {};
+      data.timestamp = currentTimestamp;
       data.owner_id = props.user.id;
       data.title = title;
       data.start_date = startDate;

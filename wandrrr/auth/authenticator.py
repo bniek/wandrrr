@@ -1,4 +1,3 @@
-from jose.constants import ALGORITHMS
 import os
 from fastapi import Depends
 from jwtdown_fastapi.authentication import Authenticator
