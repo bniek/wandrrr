@@ -10,9 +10,7 @@ from fastapi import (
 from jwtdown_fastapi.authentication import Token
 from auth.authenticator import authenticator
 from pydantic import BaseModel
-from typing import List, Optional, Union
-
-from typing import List, Optional, Union
+from typing import List, Union
 
 
 from queries.accounts import (
@@ -24,30 +22,27 @@ from queries.accounts import (
 
 from queries.journal_entries import (
     Error,
-    PostIn,
     PostOut,
     WandrrrRepository,
 )
 
-from queries.journal_entries import (
-    Error,
-    PostIn,
-    PostOut,
-    WandrrrRepository,
-)
 
 class AccountForm(BaseModel):
     username: str
     password: str
 
+
 class AccountToken(Token):
     account: AccountOut
+
 
 class HttpError(BaseModel):
     detail: str
 
+
 router = APIRouter()
 
+
 @router.get("/wandrrrs/protected", response_model=Union[List[PostOut], Error])
 async def get_protected(
     wandrrrs: WandrrrRepository = Depends(),
@@ -55,6 +50,7 @@ async def get_protected(
 ):
     owner_id = account_data['id']
     return wandrrrs.get_all(owner_id=owner_id)
+
 
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
@@ -68,38 +64,20 @@ async def get_token(
             "account": account,
         }
 
-@router.get("/wandrrrs/protected", response_model=Union[List[PostOut], Error])
-async def get_protected(
-    wandrrrs: WandrrrRepository = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data),
-):
-    owner_id = account_data['id']
-    return wandrrrs.get_all(owner_id=owner_id)
-
-@router.get("/token", response_model=AccountToken | None)
-async def get_token(
-    request: Request,
-    account: AccountOut = Depends(authenticator.try_get_current_account_data)
-) -> AccountToken | None:
-    if account and authenticator.cookie_name in request.cookies:
-        return {
-            "access_token": request.cookies[authenticator.cookie_name],
-            "type": "Bearer",
-            "account": account,
-        }
 
 not_authorized = HTTPException(
     status_code=status.HTTP_401_UNAUTHORIZED,
     detail="Invalid authentication credentials",
-    headers={"WWW-Authenticate":"Bearer"}
+    headers={"WWW-Authenticate": "Bearer"}
 )
+
 
 @router.get("/wandrrr/user/{id}")
 def get_user(
     id: int,
     repo: AccountRepo = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
-)-> AccountOut:
+) -> AccountOut:
     # Check if the user is logged in
     if not account_data:
         raise HTTPException(status_code=401, detail="Not authenticated")

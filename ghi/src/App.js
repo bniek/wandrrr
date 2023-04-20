@@ -27,11 +27,11 @@ function App(props) {
             <Route path="/signup" element={<Auth />} />
             <Route path="/login" element={<Login />} />
             <Route path="new" element={<NewWandrrrForm user={user} />} />
-            <Route path="edit/" element={<UpdateWandrrr />} />
+            <Route path="/edit" element={<UpdateWandrrr />} />
             <Route path="/error" element={<AccessError />} />
-            <Route path="/wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
 
             <Route path="/wandrrrs" element={<WandrrrsList />} />
+            <Route path="/wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
           </Routes>
         </div>
       </div>
