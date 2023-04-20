@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from auth.authenticator import authenticator
+from auth import authenticator
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from routers import accounts, journal_entries
