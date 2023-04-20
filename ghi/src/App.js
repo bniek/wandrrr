@@ -21,7 +21,6 @@ function App(props) {
     return (
       <div>
         <Nav user={user} />
-        <div className="container">
           <Routes>
             <Route path="/" element={<Auth />} />
             <Route path="/signup" element={<Auth />} />
@@ -33,7 +32,6 @@ function App(props) {
 
             <Route path="/wandrrrs" element={<WandrrrsList />} />
           </Routes>
-        </div>
       </div>
     );
 }

@@ -173,7 +173,7 @@ function NewWandrrrForm(props) {
       <div className="contain">
         <div className="m-auto py-20">
         <h1 className="text-6xl text-[#FBC208] text-center" style={{ fontFamily: 'Lilita One' }}>NEW!</h1>
-              <form className="rounded-lg shadow-lg max-w-xl m-auto py-10 mt-10 px-12 border" onSubmit={handleSubmit} id="create-wandrrr-form">
+              <form className="bg-[#FCFBE4] rounded-lg shadow-lg max-w-xl m-auto py-10 mt-10 px-12 border" onSubmit={handleSubmit} id="create-wandrrr-form">
                 <div className="form-floating mb-3">
                   <label className="py-2 text-[#FBC208]" htmlFor="title">Title</label>
                   <input onChange={handleTitleChange} placeholder="The best day of my life" required type="text" name="title" id="title" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
@@ -184,7 +184,7 @@ function NewWandrrrForm(props) {
                 </div>
                 <div className="form-floating mb-3">
                   <label className="py-2 text-[#FBC208]" htmlFor="end_date">End date </label>
-                  <input onChange={handleEndDateChange} type="date" name="end_date" id="end_date" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
+                  <input onChange={handleEndDateChange} required type="date" name="end_date" id="end_date" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
                   <label className="py-2 text-[#FBC208]" htmlFor="location">Location</label>
@@ -297,7 +297,7 @@ function NewWandrrrForm(props) {
                   <label className="py-2 text-[#FBC208]" htmlFor="photos05">Another photo</label>
                   <input onChange={handlePhotos05Change}  placeholder="URL" type="text" name="photos05" id="photos05" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
-                <button className="mt-4 w-full bg-[#FBC208] hover:bg-[#FD8900] text-white border py-3 px-6 font-semibold text-md rounded" type="submit">Done</button>
+                <button className="mt-4 w-full bg-[#FBC208] hover:bg-[#FD8900] text-white border py-3 px-6 font-semibold text-md rounded" type="submit">WANDRRR</button>
               </form>
         </div>
         </div>

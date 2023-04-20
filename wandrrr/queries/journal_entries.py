@@ -73,7 +73,7 @@ class WandrrrRepository:
                                 rating
                             FROM wandrrrs
                             WHERE owner_id = %s
-                            ORDER BY datestamp;
+                            ORDER BY datestamp DESC;
                         """
                         result = db.execute(query, (owner_id,))
                     else:
