@@ -36,7 +36,7 @@ steps = [
             photos03 BYTEA,
             photos04 BYTEA,
             photos05 BYTEA,
-            datestamp DATE NOT NULL DEFAULT CURRENT_DATE,
+            timestamp TIMESTAMPZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
             rating VARCHAR,
             CONSTRAINT pk_wandrrrs PRIMARY KEY (wandrrrs_id),
             CONSTRAINT fk_accounts FOREIGN KEY (owner_id) REFERENCES accounts (id) ON DELETE CASCADE

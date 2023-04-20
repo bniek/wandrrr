@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional, Union
-from datetime import date
+from datetime import date, datetime
 from queries.pool import pool
 
 class Error(BaseModel):
@@ -22,7 +22,7 @@ class PostIn(BaseModel):
     photos03: Optional[str]
     photos04: Optional[str]
     photos05: Optional[str]
-    datestamp: date = date.today()
+    timestamp: datetime = datetime.now()
     rating: Optional[str]
 
 class PostOut(BaseModel):
@@ -42,7 +42,7 @@ class PostOut(BaseModel):
     photos03: Optional[str]
     photos04: Optional[str]
     photos05: Optional[str]
-    datestamp: date
+    timestamp: datetime
     rating: Optional[str]
 
 class WandrrrRepository:
@@ -69,11 +69,11 @@ class WandrrrRepository:
                                 photos03,
                                 photos04,
                                 photos05,
-                                datestamp,
+                                timestamp,
                                 rating
                             FROM wandrrrs
                             WHERE owner_id = %s
-                            ORDER BY datestamp DESC;
+                            ORDER BY timestamp DESC;
                         """
                         result = db.execute(query, (owner_id,))
                     else:
@@ -95,10 +95,10 @@ class WandrrrRepository:
                                 photos03,
                                 photos04,
                                 photos05,
-                                datestamp,
+                                timestamp,
                                 rating
                             FROM wandrrrs
-                            ORDER BY datestamp;
+                            ORDER BY timestamp;
                         """
                         result = db.execute(query)
 
@@ -151,7 +151,7 @@ class WandrrrRepository:
                             photos03 = %s,
                             photos04 = %s,
                             photos05 = %s,
-                            datestamp = %s,
+                            timestamp = %s,
                             rating = %s
                         WHERE wandrrrs_id = %s
                         """,
@@ -171,7 +171,7 @@ class WandrrrRepository:
                             post.photos03,
                             post.photos04,
                             post.photos05,
-                            post.datestamp,
+                            post.timestamp,
                             post.rating,
                             wandrrr_id
                         ]
@@ -203,7 +203,7 @@ class WandrrrRepository:
             photos03=record[13],
             photos04=record[14],
             photos05=record[15],
-            datestamp=record[16],
+            timestamp=record[16],
             rating=record[17],
         )
 
@@ -232,7 +232,7 @@ class WandrrrRepository:
                             , photos03
                             , photos04
                             , photos05
-                            , datestamp
+                            , timestamp
                             , rating
                         FROM wandrrrs
                         WHERE wandrrrs_id = %s
@@ -254,7 +254,7 @@ class WandrrrRepository:
                 result = db.execute(
                     """
                     INSERT INTO wandrrrs
-                        (owner_id, title, start_date, end_date, location, description, mood, companion, companion_dropdown, weather, photos01, photos02, photos03, photos04, photos05, datestamp, rating)
+                        (owner_id, title, start_date, end_date, location, description, mood, companion, companion_dropdown, weather, photos01, photos02, photos03, photos04, photos05, timestamp, rating)
                     VALUES
                         (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING wandrrrs_id;
@@ -274,7 +274,7 @@ class WandrrrRepository:
                         post.photos03,
                         post.photos04,
                         post.photos05,
-                        post.datestamp,
+                        post.timestamp,
                         post.rating
                     ]
                 )

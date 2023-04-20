@@ -145,7 +145,7 @@ function WandrrrsList() {
                                             </div> */}
                                             <div className="card-actions justify-end">
                                                 <p style={{textAlign: "right", fontSize: "10px"}}>
-                                                    <span>{wandrrr.datestamp}</span>
+                                                    <span>{wandrrr.timestamp}</span>
                                                 </p>
                                             </div>
                                         </div>
