@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import useToken, { AuthContext } from "@galvanize-inc/jwtdown-for-react";
-import { useHistory } from "react-router";
 
 const BASE_URL = "http://localhost:8000"; // replace with backend API base URL
 
@@ -31,7 +30,6 @@ const updatePost = async (wandrrrs_id, post, token) => {
 function UpdateWandrrr(props) {
   const { token } = useContext(AuthContext);
   const [ownerId, setOwnerId] = useState("");
-  const history = useHistory();
   const { id } = useParams();
   const fetchData = async () => {
     const url = "http://localhost:8000/token";
@@ -76,7 +74,7 @@ function UpdateWandrrr(props) {
     event.preventDefault();
     const id = queryParams.get("id");
     await updatePost(id, formValues, token); // send the updated post data to the server
-    history.push(`/wandrrrs/${id}`); // redirect here to whichever page you want
+    // redirect here to whichever page you want
   };
 
   useEffect(() => {
