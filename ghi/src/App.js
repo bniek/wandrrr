@@ -19,7 +19,7 @@ function App(props) {
   const { token } = useContext (AuthContext);
   const user = useUser(token);
     return (
-      <div>
+      <div className='whole'>
         <Nav user={user} />
           <Routes>
             <Route path="/" element={<LandingPage />} />

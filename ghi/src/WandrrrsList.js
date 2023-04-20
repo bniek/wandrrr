@@ -62,7 +62,7 @@ function WandrrrsList() {
                             return (
                                 <Link to={`/wandrrrs/${wandrrr.wandrrrs_id}`} className="card-link">
                                     <div
-                                    className="card card-side bg-base-100 shadow-xl glass mx-auto grid md:grid-cols-3 hover:bg-neutral"
+                                    className="card card-side bg-base-100 glass mx-auto grid md:grid-cols-3 hover:bg-neutral"
                                     style={{
                                         margin: "30px",
                                         alignItems: "center",
@@ -95,7 +95,7 @@ function WandrrrsList() {
                                                 textTransform: "uppercase"
                                                 }}
                                             >
-                                                {wandrrr.location}
+                                                {wandrrr.title}
                                             </h1>
                                             <div
                                             className="card-title"
@@ -118,7 +118,7 @@ function WandrrrsList() {
                                                     />
                                                 </span>
                                                 <span className="title">
-                                                {wandrrr.title}
+                                                {wandrrr.location}
                                                 </span>
                                             </div>
                                             <div className="card-date" style={{marginTop: "1em"}}>
@@ -140,9 +140,9 @@ function WandrrrsList() {
                                                 <span className="dash"> - </span>
                                                 <span className="start-date">{new Date(wandrrr.end_date).toLocaleDateString("en-US", options)}</span>
                                             </div>
-                                            <div className="flex-auto">
+                                            {/* <div className="flex-auto">
                                                 <div>{wandrrr.description}</div>
-                                            </div>
+                                            </div> */}
                                             <div className="card-actions justify-end">
                                                 <p style={{textAlign: "right", fontSize: "10px"}}>
                                                     <span>{wandrrr.datestamp}</span>

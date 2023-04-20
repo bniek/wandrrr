@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import useToken, { AuthContext } from '@galvanize-inc/jwtdown-for-react';
+import React, { useState } from 'react';
+import { AuthContext } from '@galvanize-inc/jwtdown-for-react';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './form.css';
