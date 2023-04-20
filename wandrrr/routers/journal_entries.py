@@ -1,6 +1,6 @@
 from typing import List, Optional, Union
 from fastapi import APIRouter, Depends, Response, HTTPException
-from auth.authenticator import authenticator
+from authenticator import authenticator
 from queries.journal_entries import (
     Error,
     PostIn,
