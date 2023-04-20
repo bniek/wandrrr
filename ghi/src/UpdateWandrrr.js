@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import useToken, { AuthContext } from "@galvanize-inc/jwtdown-for-react";
-import { useContext } from "react";
+import { useHistory } from "react-router";
 
 const BASE_URL = "http://localhost:8000"; // replace with backend API base URL
 
@@ -31,6 +31,8 @@ const updatePost = async (wandrrrs_id, post, token) => {
 function UpdateWandrrr(props) {
   const { token } = useContext(AuthContext);
   const [ownerId, setOwnerId] = useState("");
+  const history = useHistory();
+  const { id } = useParams();
   const fetchData = async () => {
     const url = "http://localhost:8000/token";
     const response = await fetch(url);
@@ -74,7 +76,7 @@ function UpdateWandrrr(props) {
     event.preventDefault();
     const id = queryParams.get("id");
     await updatePost(id, formValues, token); // send the updated post data to the server
-    // redirect here to whichever page you want
+    history.push(`/wandrrrs/${id}`); // redirect here to whichever page you want
   };
 
   useEffect(() => {
@@ -331,7 +333,7 @@ function UpdateWandrrr(props) {
           className="mt-4 w-full bg-gray-400 hover:bg-gray-600 text-white border py-3 px-6 font-semibold text-md rounded"
           type="submit"
         >
-          Create!
+          Update!
         </button>
         <input
           onChange={handleOwnerIdChange}
