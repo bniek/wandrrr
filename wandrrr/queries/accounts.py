@@ -1,32 +1,44 @@
 from pydantic import BaseModel
 from queries.pool import pool
 
+
 class DuplicateAccountError(ValueError):
     pass
+
 
 class AccountIn(BaseModel):
     first_name: str
     last_name: str
     username: str
-    email : str
-    password : str
+    email: str
+    password: str
+
 
 class AccountOut(BaseModel):
     id: int
     first_name: str
     last_name: str
     username: str
-    email : str
-    hashed_password : str
+    email: str
+    hashed_password: str
+
 
 class AccountRepo(BaseModel):
-    def CreateUser(self, accounts: AccountIn, hashed_password: str)-> AccountOut:
+    def CreateUser(
+            self,
+            accounts: AccountIn,
+            hashed_password: str
+            ) -> AccountOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
                     INSERT INTO accounts
-                        (first_name, last_name, username, email, hashed_password)
+                        (first_name,
+                        last_name,
+                        username,
+                        email,
+                        hashed_password)
                     VALUES
                         (%s,%s,%s,%s,%s)
                     RETURNING id;
@@ -43,7 +55,7 @@ class AccountRepo(BaseModel):
                 id = db.fetchone()[0]
                 return self.account_in_to_out(id, accounts, hashed_password)
 
-    def get_user_by_id(self, id: int) ->AccountOut:
+    def get_user_by_id(self, id: int) -> AccountOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
@@ -78,7 +90,12 @@ class AccountRepo(BaseModel):
             with conn.cursor() as db:
                 db.execute(
                     """
-                    SELECT id, first_name, last_name, username, email, hashed_password
+                    SELECT id,
+                    first_name,
+                    last_name,
+                    username,
+                    email,
+                    hashed_password
                     FROM accounts
                     WHERE username =%s;
                     """,
@@ -100,6 +117,11 @@ class AccountRepo(BaseModel):
                     except Exception as e:
                         raise Exception("Error", e)
 
-    def account_in_to_out(self, id: int, accounts: AccountIn, hashed_password: str):
+    def account_in_to_out(
+            self,
+            id: int,
+            accounts: AccountIn,
+            hashed_password: str
+            ):
         old_data = accounts.dict()
         return AccountOut(id=id, hashed_password=hashed_password, **old_data)
