@@ -36,7 +36,7 @@ function Nav(props) {
                 </div>
                 <ul className="absolute right-0 p-2 bg-base-100 hover:bg-base-100 bg-white rounded-lg shadow-xl">
                   <li>
-                    <NavLink to="/new/">New Wandrrr</NavLink>
+                    <NavLink to="/new">New Wandrrr</NavLink>
                   </li>
                   <li>
                     <button onClick={logout}>Log out</button>

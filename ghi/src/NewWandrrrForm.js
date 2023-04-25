@@ -7,13 +7,6 @@ function NewWandrrrForm(props) {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (token) {
-      navigate("/wandrrrs")
-    }
-  }, [navigate, token]);
-
-
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -149,6 +142,7 @@ function NewWandrrrForm(props) {
       setPhotos04("");
       setPhotos05("");
       setRating("");
+      navigate("/wandrrrs");
       // window.location.href = "/wandrrrs";
     }
   };
