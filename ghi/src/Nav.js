@@ -6,6 +6,7 @@ import { useContext } from "react";
 function Nav(props) {
   const { token } = useContext(AuthContext);
   const { logout } = useToken();
+  console.log(props.user)
 
   return (
     <div className="navbar p-5 bg-base-100 relative">

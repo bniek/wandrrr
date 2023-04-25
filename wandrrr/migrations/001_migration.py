@@ -36,7 +36,7 @@ steps = [
             photos03 BYTEA,
             photos04 BYTEA,
             photos05 BYTEA,
-            datestamp DATE NOT NULL DEFAULT CURRENT_DATE,
+            timestamp TIMESTAMPTZ,
             rating VARCHAR,
             CONSTRAINT pk_wandrrrs PRIMARY KEY (wandrrrs_id),
             CONSTRAINT fk_accounts FOREIGN KEY (owner_id)
@@ -48,6 +48,28 @@ steps = [
         # "Down" SQL statement
         """
         DROP TABLE wandrrrs;
+        """
+    ],
+    [
+        # "Up" SQL statement for trigger
+        """
+        CREATE OR REPLACE FUNCTION update_wandrrrs_timestamp()
+        RETURNS TRIGGER AS $$
+        BEGIN
+            NEW.timestamp = NOW();
+            RETURN NEW;
+        END;
+        $$ LANGUAGE plpgsql;
+
+        CREATE TRIGGER update_wandrrrs_timestamp_trigger
+        BEFORE INSERT ON wandrrrs
+        FOR EACH ROW
+        EXECUTE FUNCTION update_wandrrrs_timestamp();
+        """,
+        # "Down" SQL statement for trigger
+        """
+        DROP TRIGGER update_wandrrrs_timestamp_trigger ON wandrrrs;
+        DROP FUNCTION update_wandrrrs_timestamp();
         """
     ]
 ]
