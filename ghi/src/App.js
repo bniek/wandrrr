@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
+import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import Auth from "./Auth.js";
 import "./App.css";
 import useUser from "./useUser";
@@ -16,22 +17,28 @@ import LandingPage from "./LandingPage.js";
 function App(props) {
   const { token } = useContext(AuthContext);
   const user = useUser(token);
+  const domain = /https:\/\/[^/]+/;
+  const basename = process.env.PUBLIC_URL.replace(domain, "");
+
   return (
     <div>
-      <Nav user={user} />
-      <div className="container">
-        <Routes>
-          <Route path="" element={<LandingPage />} />
-          <Route path="signup" element={<Auth />} />
-          <Route path="login" element={<Login />} />
-          <Route path="new" element={<NewWandrrrForm user={user} />} />
-          <Route path="edit" element={<UpdateWandrrr />} />
-          <Route path="error" element={<AccessError />} />
-
-          <Route path="wandrrrs" element={<WandrrrsList />} />
-          <Route path="wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
-        </Routes>
-      </div>
+      <BrowserRouter basename={basename}>
+        <AuthProvider
+          tokenUrl={`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`}
+        >
+          <Nav user={user} />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/signup" element={<Auth />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="new" element={<NewWandrrrForm user={user} />} />
+            <Route path="/edit" element={<UpdateWandrrr />} />
+            <Route path="/error" element={<AccessError />} />
+            <Route path="/wandrrrs" element={<WandrrrsList />} />
+            <Route path="/wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
     </div>
   );
 }
