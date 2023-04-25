@@ -21,15 +21,15 @@ function App(props) {
       <Nav user={user} />
       <div className="container">
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/signup" element={<Auth />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="" element={<LandingPage />} />
+          <Route path="signup" element={<Auth />} />
+          <Route path="login" element={<Login />} />
           <Route path="new" element={<NewWandrrrForm user={user} />} />
-          <Route path="/edit" element={<UpdateWandrrr />} />
-          <Route path="/error" element={<AccessError />} />
+          <Route path="edit" element={<UpdateWandrrr />} />
+          <Route path="error" element={<AccessError />} />
 
-          <Route path="/wandrrrs" element={<WandrrrsList />} />
-          <Route path="/wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
+          <Route path="wandrrrs" element={<WandrrrsList />} />
+          <Route path="wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
         </Routes>
       </div>
     </div>
