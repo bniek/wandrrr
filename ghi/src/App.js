@@ -31,7 +31,7 @@ function App(props) {
             <Route path="/" element={<LandingPage />} />
             <Route path="/signup" element={<Auth />} />
             <Route path="/login" element={<Login />} />
-            <Route path="new" element={<NewWandrrrForm user={user} />} />
+            <Route path="/new" element={<NewWandrrrForm user={user} />} />
             <Route path="/edit" element={<UpdateWandrrr />} />
             <Route path="/error" element={<AccessError />} />
             <Route path="/wandrrrs" element={<WandrrrsList />} />
