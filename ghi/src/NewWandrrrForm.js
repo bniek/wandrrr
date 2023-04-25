@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
-import { useContext, useNavigate } from "react";
+import { useContext} from "react";
+import { useNavigate } from "react-router-dom";
 
 function NewWandrrrForm(props) {
   const { token } = useContext(AuthContext);
