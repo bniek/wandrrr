@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 import { useContext} from "react";
 import { useNavigate } from "react-router-dom";
