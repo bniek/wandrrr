@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
-import { useContext } from "react";
+import { useContext} from "react";
+import { useNavigate } from "react-router-dom";
 
 function NewWandrrrForm(props) {
   const { token } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -140,7 +142,8 @@ function NewWandrrrForm(props) {
       setPhotos04("");
       setPhotos05("");
       setRating("");
-      window.location.href = "/wandrrrs";
+      navigate("/wandrrrs");
+      // window.location.href = "/wandrrrs";
     }
   };
 
