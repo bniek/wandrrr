@@ -1,11 +1,18 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Login() {
   const [formData, setFormData] = useState({});
   const location = useLocation();
   const { token, login } = useToken();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token) {
+      navigate("/wandrrrs")
+    }
+  }, [navigate, token]);
 
   const handleFormChange = (e) => {
     setFormData({
@@ -22,9 +29,11 @@ function Login() {
       login(formData.username, formData.password);
     }
   };
-  if (token != null) {
-    window.location.href = "/wandrrrs";
-  }
+
+  // if (token != null) {
+  //   window.location.href = "/wandrrrs";
+  // }
+
   const { username = "", password = "" } = formData;
   return (
     <div align="center">
