@@ -127,7 +127,7 @@ function NewWandrrrForm(props) {
 
 
 
-    const wandrrrUrl = `http://localhost:8000/wandrrrs`;
+    const wandrrrUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs`;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
