@@ -19,30 +19,19 @@ function App(props) {
   return (
     <div>
       <Nav user={user} />
-      <div className="container">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<Auth />} />
           <Route path="/login" element={<Login />} />
-          <Route path="new" element={<NewWandrrrForm user={user} />} />
+          <Route path="/new" element={<NewWandrrrForm user={user} />} />
           <Route path="/edit" element={<UpdateWandrrr />} />
           <Route path="/error" element={<AccessError />} />
-    return (
-      <div className='whole'>
-        <Nav user={user} />
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/signup" element={<Auth />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="new" element={<NewWandrrrForm user={user} />} />
-            <Route path="edit/" element={<UpdateWandrrr />} />
-            <Route path="/error" element={<AccessError />} />
-            <Route path="/wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
 
-            <Route path="/wandrrrs" element={<WandrrrsList />} />
-          </Routes>
-      </div>
-    );
+          <Route path="/wandrrrs" element={<WandrrrsList />} />
+          <Route path="/wandrrrs/:wandrrrs_id" element={<WandrrrDetail />} />
+        </Routes>
+    </div>
+  );
 }
 
 export default App;

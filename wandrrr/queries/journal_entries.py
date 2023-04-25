@@ -257,7 +257,25 @@ class WandrrrRepository:
                 result = db.execute(
                     """
                     INSERT INTO wandrrrs
-                        (owner_id, title, start_date, end_date, location, description, mood, companion, companion_dropdown, weather, photos01, photos02, photos03, photos04, photos05, timestamp, rating)
+                        (
+                            owner_id,
+                            title,
+                            start_date,
+                            end_date,
+                            location,
+                            description,
+                            mood,
+                            companion,
+                            companion_dropdown,
+                            weather,
+                            photos01,
+                            photos02,
+                            photos03,
+                            photos04,
+                            photos05,
+                            timestamp,
+                            rating
+                            )
                     VALUES
                         (%s, %s, %s, %s, %s, %s, %s, %s, %s,
                         %s, %s, %s, %s, %s, %s, %s, %s)

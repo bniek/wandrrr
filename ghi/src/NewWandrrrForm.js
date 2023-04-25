@@ -5,12 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './form.css';
 
 
-
-
-
 function NewWandrrrForm(props) {
-  const { token } = useContext(AuthContext);
-
   const { token } = useContext (AuthContext);
   const currentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
@@ -128,6 +123,7 @@ function NewWandrrrForm(props) {
       data.photos05 = photos05;
       data.rating = rating;
       console.log(data)
+
 
 
 

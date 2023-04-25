@@ -1,15 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useContext } from 'react';
+import { AuthContext } from '@galvanize-inc/jwtdown-for-react';
+import { useNavigate } from 'react-router-dom';
+
+
+
+function Modal({children}) {
+    return (
+        <div className="relative z-50">
+            <div className="fixed inset-0 bg-black/10" aria-hidden="true"/>
+
+            <div className="fixed inset-0 flex items-center justify-center p-4">
+                <div className="flex min-h-full items-center justify-center">
+                    {children}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 
 function WandrrrDetail() {
-  const [wandrrr, setWandrrr] = useState([]);
+  const [open, setOpen] = useState(false)
+  const navigate = useNavigate();
+
+
   const { wandrrrs_id } = useParams();
+  const { token } = useContext (AuthContext);
+  const [wandrrr, setWandrrr] = useState([]);
   const [moods, setMoods] = useState("");
   const [ratings, setRatings] = useState("");
   const [companions, setCompanions] = useState("");
   const [weathers, setWeathers] = useState("");
 
-  useEffect(() => {
+
+  async function deleteWandrrr(wandrrrs_id) {
+    const deleteUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/${wandrrrs_id}`;
+    const deleteResponse = await fetch(deleteUrl, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    setOpen(!open)
+
+    if (deleteResponse.ok) {
+      console.log('Deleted');
+      navigate('/wandrrrs');
+
+
+    }
+  }
+
+   useEffect(() => {
     const fetchWandrrrDetails = async () => {
       const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/${wandrrrs_id}`;
       const response = await fetch(url, { credentials: "include" });
@@ -352,6 +397,28 @@ function WandrrrDetail() {
               {companions} {wandrrr.companion}
             </h2>
           </div>
+
+
+          <div className="relative">
+            <div className="flex flex-col items-center my-24">
+                <button onClick={() => setOpen(!open)} className="bg-neutral-400 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Delete</button>
+            </div>
+            {open ? <Modal>
+                <div className="flex flex-col gap-2 bg-white px-6 pb-6 py-2 rounded-lg">
+                    <h1 className="text-lg text-black mt-2 pr-48">Delete Wandrrr</h1>
+                    <hr/>
+                    <div className="flex flex-col gap-2">
+                        <p className="py-6">Are you sure you want to delete this forever?</p>
+                    </div>
+                    <hr/>
+                    <div className="flex flex-row gap-2 ">
+                        <button onClick={() => setOpen(!open)} className="flex-1 bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Cancel</button>
+                        <button onClick={() => deleteWandrrr(wandrrrs_id)} className="flex-1 bg-neutral-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Delete</button>
+                    </div>
+                </div>
+            </Modal> : null}
+          </div>
+
         </div>
       </div>
     </>
