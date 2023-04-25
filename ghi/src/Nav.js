@@ -20,7 +20,7 @@ function Nav(props) {
           {token ? (
             <>
               <li>
-                <NavLink to="/wandrrrs/">My Wandrrrs</NavLink>
+                <NavLink to="/wandrrrs">My Wandrrrs</NavLink>
               </li>
               <li tabIndex={0}>
                 <div>

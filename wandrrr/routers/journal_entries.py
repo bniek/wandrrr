@@ -11,7 +11,7 @@ from queries.journal_entries import (
 router = APIRouter()
 
 
-@router.get("/wandrrrs/", response_model=Union[List[PostOut], Error])
+@router.get("/wandrrrs", response_model=Union[List[PostOut], Error])
 def get_all_posts(
      repo: WandrrrRepository = Depends(),
      account_data: dict = Depends(
@@ -91,7 +91,7 @@ def delete_post(
         return repo.delete(wandrrrs_id)
 
 
-@router.post("/wandrrrs/")
+@router.post("/wandrrrs")
 def create_post(
     post: PostIn,
     repo: WandrrrRepository = Depends(),
