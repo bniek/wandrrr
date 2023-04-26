@@ -6,8 +6,7 @@ import { useContext } from "react";
 function Nav(props) {
   const { token } = useContext(AuthContext);
   const { logout } = useToken();
-  console.log(props.user)
-
+  console.log(props)
   return (
     <div className="navbar p-5 bg-base-100 relative">
       <div className="flex-1">

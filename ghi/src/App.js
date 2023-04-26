@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 import Auth from "./Auth.js";
 import "./App.css";
 import useUser from "./useUser";
@@ -17,7 +17,7 @@ import LandingPage from "./LandingPage.js";
 function App(props) {
   const { token } = useContext(AuthContext);
   const user = useUser(token);
-  console.log(props)
+  // console.log(user)
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
 

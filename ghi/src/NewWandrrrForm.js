@@ -8,6 +8,7 @@ import './form.css';
 function NewWandrrrForm(props) {
   const { token } = useContext (AuthContext);
   const currentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  console.log(token)
 
 
   const navigate = useNavigate();
