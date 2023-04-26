@@ -36,7 +36,6 @@ function UpdateWandrrr(props) {
     if (response.ok) {
       const data = await response.json();
       setOwnerId(data.id);
-      console.log(data);
     }
   };
   // console.log(useParams());

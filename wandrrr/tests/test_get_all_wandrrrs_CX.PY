@@ -10,7 +10,6 @@ class TestWandrrrQueries:
     def get_all(self, owner_id):
         return [all_wandrrrs_test]
 
-
 all_wandrrrs_test = {
     "wandrrrs_id": 0,
     "owner_id": 0,

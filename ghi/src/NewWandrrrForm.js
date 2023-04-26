@@ -10,7 +10,6 @@ import useUser from "./useUser";
 function NewWandrrrForm() {
   const { token } = useContext (AuthContext);
   const currentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  console.log(token)
   const user = useUser(token);
 
 
@@ -126,9 +125,6 @@ function NewWandrrrForm() {
       data.photos04 = photos04;
       data.photos05 = photos05;
       data.rating = rating;
-      console.log(data)
-
-
 
 
     const wandrrrUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs`;
@@ -142,8 +138,6 @@ function NewWandrrrForm() {
     };
     const response = await fetch(wandrrrUrl, fetchConfig);
     if (response.ok) {
-      const newWandrrr = await response.json();
-      console.log(newWandrrr);
 
       setTitle('');
       setStartDate('');

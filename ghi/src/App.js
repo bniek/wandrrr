@@ -17,7 +17,7 @@ import LandingPage from "./LandingPage.js";
 function App() {
   // const { token } = useContext(AuthContext);
   // const user = useUser(token);
-  // console.log(user)
+
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
 
