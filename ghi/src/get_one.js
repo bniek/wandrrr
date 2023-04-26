@@ -48,8 +48,6 @@ function WandrrrDetail() {
 
     if (deleteResponse.ok) {
       navigate('/wandrrrs');
-
-
     }
   }
 

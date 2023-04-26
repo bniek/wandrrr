@@ -63,7 +63,7 @@ function WandrrrsList() {
                             return (
                                 <Link to={`/wandrrrs/${wandrrr.wandrrrs_id}`} className="card-link">
                                     <div
-                                    className="card card-side bg-base-100 glass mx-auto grid md:grid-cols-3 hover:bg-neutral"
+                                    className="card card-side bg-base-100 shadow-xl glass mx-auto grid md:grid-cols-3 hover:bg-accent"
                                     style={{
                                         margin: "30px",
                                         alignItems: "center",
@@ -137,16 +137,19 @@ function WandrrrsList() {
                                                     }}
                                                     />
                                                 </span>
-                                                <span className="start-date">{new Date(wandrrr.start_date).toLocaleDateString("en-US", options)}</span>
+                                                <span className="start-date">
+                                                    {new Date(wandrrr.start_date).toLocaleDateString("en-US", options)}
+                                                </span>
                                                 <span className="dash"> - </span>
-                                                <span className="start-date">{new Date(wandrrr.end_date).toLocaleDateString("en-US", options)}</span>
+                                                <span className="start-date">
+                                                    {new Date(wandrrr.end_date).toLocaleDateString("en-US", options)}
+                                                </span>
                                             </div>
-                                            {/* <div className="flex-auto">
-                                                <div>{wandrrr.description}</div>
-                                            </div> */}
                                             <div className="card-actions justify-end">
                                                 <p style={{textAlign: "right", fontSize: "10px"}}>
-                                                    <span>{new Date(wandrrr.timestamp).toLocaleDateString("en-US", options)}</span>
+                                                    <span>
+                                                        {new Date(wandrrr.timestamp).toLocaleDateString("en-US", options)}
+                                                    </span>
                                                 </p>
                                             </div>
                                         </div>

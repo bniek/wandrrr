@@ -20,7 +20,7 @@ function Nav() {
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          {user ? (
+          {token ? (
             <>
               <li>
                 <NavLink to="/wandrrrs">My Wandrrrs</NavLink>
