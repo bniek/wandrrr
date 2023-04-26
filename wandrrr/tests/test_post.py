@@ -14,6 +14,7 @@ class EmptyWandrrrRepository:
 
 class CreateWandrrrRepository:
     def create(self, wandrrr):
+        print("defghijklmnop")
         result = {
             "wandrrrs_id": 1,
             "owner_id": 1,
@@ -35,6 +36,7 @@ class CreateWandrrrRepository:
             "rating": "string"
         }
         result.update(wandrrr)
+        print("abccccccc")
         return result
 
 
