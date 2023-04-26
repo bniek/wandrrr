@@ -44,7 +44,7 @@ function WandrrrsList() {
                     </div>
                     <div className="content-center">
 
-                        <button onClick={() => navigate(`/wandrrr/new`)} className="btn btn-primary gap-2">
+                        <button onClick={() => navigate(`/new`)} className="btn btn-primary gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                             Create your first post
                         </button>
@@ -63,7 +63,7 @@ function WandrrrsList() {
                             return (
                                 <Link to={`/wandrrrs/${wandrrr.wandrrrs_id}`} className="card-link">
                                     <div
-                                    className="card card-side bg-base-100 shadow-xl glass mx-auto grid md:grid-cols-3 hover:bg-neutral"
+                                    className="card card-side bg-base-100 glass mx-auto grid md:grid-cols-3 hover:bg-neutral"
                                     style={{
                                         margin: "30px",
                                         alignItems: "center",
@@ -96,7 +96,7 @@ function WandrrrsList() {
                                                 textTransform: "uppercase"
                                                 }}
                                             >
-                                                {wandrrr.location}
+                                                {wandrrr.title}
                                             </h1>
                                             <div
                                             className="card-title"
@@ -119,7 +119,7 @@ function WandrrrsList() {
                                                     />
                                                 </span>
                                                 <span className="title">
-                                                {wandrrr.title}
+                                                {wandrrr.location}
                                                 </span>
                                             </div>
                                             <div className="card-date" style={{marginTop: "1em"}}>
@@ -141,12 +141,12 @@ function WandrrrsList() {
                                                 <span className="dash"> - </span>
                                                 <span className="start-date">{new Date(wandrrr.end_date).toLocaleDateString("en-US", options)}</span>
                                             </div>
-                                            <div className="flex-auto">
+                                            {/* <div className="flex-auto">
                                                 <div>{wandrrr.description}</div>
-                                            </div>
+                                            </div> */}
                                             <div className="card-actions justify-end">
                                                 <p style={{textAlign: "right", fontSize: "10px"}}>
-                                                    <span>{wandrrr.datestamp}</span>
+                                                    <span>{new Date(wandrrr.timestamp).toLocaleDateString("en-US", options)}</span>
                                                 </p>
                                             </div>
                                         </div>

@@ -2,6 +2,7 @@ import os
 from fastapi import Depends
 from jwtdown_fastapi.authentication import Authenticator
 from queries.accounts import AccountRepo, AccountOut, AccountIn
+from datetime import timedelta
 
 
 class MyAuthenticator(Authenticator):
@@ -31,6 +32,8 @@ class MyAuthenticator(Authenticator):
         # You must return TWO values from this method.
         return account.username, AccountOut(**account.dict())
 
+
+expiration = timedelta(hours=72)
 
 # # Use your private and public keys in the authenticator
 authenticator = MyAuthenticator(os.environ["SIGNING_KEY"])
