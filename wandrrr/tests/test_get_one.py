@@ -54,7 +54,7 @@ def account_override():
 def test_get_one_post():
     app.dependency_overrides[WandrrrRepository] = GetOne
     app.dependency_overrides[
-        authenticator.try_get_current_account_data  # or whichever authenticator method you're using in your endpoint
+        authenticator.try_get_current_account_data
     ] = account_override
 
     response = client.get("wandrrrs/1")
