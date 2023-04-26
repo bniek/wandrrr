@@ -47,6 +47,7 @@ api-unit-test-job:
   script:
     - cd wandrrr
     - pip install -r requirements.txt
+    - pip install requests
     - python -m pytest
 
 # Build the React/JavaScript front-end
