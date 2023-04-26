@@ -10,7 +10,6 @@ lint-test-job:
   script:
     - pip install flake8
     - flake8 wandrrr
-
 build-wandrrr-service:
   image: docker:19.03.1
   stage: build
