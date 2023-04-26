@@ -2,11 +2,15 @@ import { NavLink } from "react-router-dom";
 import useToken, { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 import React from "react";
 import { useContext } from "react";
+import useUser from "./useUser";
 
-function Nav(props) {
+
+function Nav() {
   const { token } = useContext(AuthContext);
   const { logout } = useToken();
-  console.log(props)
+  const user = useUser(token);
+
+
   return (
     <div className="navbar p-5 bg-base-100 relative">
       <div className="flex-1">
@@ -16,14 +20,14 @@ function Nav(props) {
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          {token ? (
+          {user ? (
             <>
               <li>
                 <NavLink to="/wandrrrs">My Wandrrrs</NavLink>
               </li>
               <li tabIndex={0}>
                 <div>
-                  {props.user.username}
+                  {user.username}
                   <svg
                     className="fill-current"
                     xmlns="http://www.w3.org/2000/svg"
@@ -62,5 +66,6 @@ function Nav(props) {
     </div>
   );
 }
+
 
 export default Nav;
