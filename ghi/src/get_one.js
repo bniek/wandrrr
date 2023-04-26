@@ -47,7 +47,6 @@ function WandrrrDetail() {
     setOpen(!open)
 
     if (deleteResponse.ok) {
-      console.log('Deleted');
       navigate('/wandrrrs');
 
 

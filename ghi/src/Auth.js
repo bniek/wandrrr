@@ -33,13 +33,8 @@ function Auth() {
         `${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/accounts`
       );
     }
-    // useNavigate
-    // navigate("/wandrrrs")
   };
 
-  // if (token != null) {
-  //   window.location.href = "/wandrrrs";
-  // }
 
   const {
     first_name = "",
