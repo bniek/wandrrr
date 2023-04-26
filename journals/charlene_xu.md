@@ -16,15 +16,17 @@
 
 ### (Wed) 4/26/2023
 
--
+- Fixed backend pipeline with Jon
+- Debug Bennie's unit test for create with Rosheen
 
 ### (Tue) 4/25/2023
 
--
+- Finished unit test for get_all_wandrrrs
+- Debugged as a group for backend service failed in deployment
 
 ### (Mon) 4/24/2023
 
--
+- Debugged as a group for frontend console errors on deployment site
 
 ---
 
