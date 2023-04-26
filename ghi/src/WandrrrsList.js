@@ -148,7 +148,7 @@ function WandrrrsList() {
                                             <div className="card-actions justify-end">
                                                 <p style={{textAlign: "right", fontSize: "10px"}}>
                                                     <span>
-                                                        {new Date(wandrrr.timestamp).toLocaleDateString()}
+                                                        {new Date(wandrrr.timestamp).toLocaleDateString("en-US", options)}
                                                     </span>
                                                 </p>
                                             </div>

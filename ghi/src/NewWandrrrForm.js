@@ -3,11 +3,16 @@ import { AuthContext } from '@galvanize-inc/jwtdown-for-react';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './form.css';
+import useUser from "./useUser";
 
 
-function NewWandrrrForm(props) {
+
+function NewWandrrrForm() {
   const { token } = useContext (AuthContext);
   const currentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  console.log(token)
+  const user = useUser(token);
+
 
 
   const navigate = useNavigate();
@@ -26,7 +31,6 @@ function NewWandrrrForm(props) {
   const [photos04, setPhotos04] = useState('');
   const [photos05, setPhotos05] = useState('');
   const [rating, setRating] = useState('');
-
 
 
   const handleTitleChange = (event) => {
@@ -106,7 +110,7 @@ function NewWandrrrForm(props) {
       event.preventDefault();
       const data = {};
       data.timestamp = currentTimestamp;
-      data.owner_id = props.user.id;
+      data.owner_id = user.id;
       data.title = title;
       data.start_date = startDate;
       data.end_date = endDate;
@@ -169,26 +173,28 @@ function NewWandrrrForm(props) {
     return (
       <div className="contain">
         <div className="m-auto py-20">
-        <h1 className="text-6xl text-[#FBC208] text-center" style={{ fontFamily: 'Lilita One' }}>NEW!</h1>
               <form className="bg-[#FCFBE4] rounded-lg shadow-lg max-w-xl m-auto py-10 mt-10 px-12 border" onSubmit={handleSubmit} id="create-wandrrr-form">
+                <div className="form-floating mb-3 py-20">
+                  <h1 className="text-6xl text-[#FBC208] text-center" style={{ fontFamily: 'Instrument Serif' }}>Tell me all about your Wandrrr!</h1>
+                </div>
                 <div className="form-floating mb-3">
-                  <label className="py-2 text-[#FBC208]" htmlFor="title">Title</label>
+                  <label className="py-2 text-[#FBC208]" htmlFor="title">Title*</label>
                   <input onChange={handleTitleChange} placeholder="The best day of my life" required type="text" name="title" id="title" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label className="py-2 text-[#FBC208]" htmlFor="start_date">Start date</label>
+                  <label className="py-2 text-[#FBC208]" htmlFor="start_date">Start date*</label>
                   <input onChange={handleStartDateChange} required type="date" name="start_date" id="start_date" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label className="py-2 text-[#FBC208]" htmlFor="end_date">End date </label>
+                  <label className="py-2 text-[#FBC208]" htmlFor="end_date">End date* </label>
                   <input onChange={handleEndDateChange} required type="date" name="end_date" id="end_date" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
-                  <label className="py-2 text-[#FBC208]" htmlFor="location">Location</label>
+                  <label className="py-2 text-[#FBC208]" htmlFor="location">Location*</label>
                   <input onChange={handleLocationChange} placeholder="Tokyo, Japan" required type="text" name="location" id="location" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="mb-3">
-                  <label className="py-2 text-[#FBC208]" htmlFor="Description">Description</label>
+                  <label className="py-2 text-[#FBC208]" htmlFor="Description">Description*</label>
                   <textarea onChange={handleDescriptionChange} required className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" id="description" rows="6" name="description" ></textarea>
                 </div>
                 <div className="form-floating mb-3">
@@ -274,7 +280,7 @@ function NewWandrrrForm(props) {
                   </select>
                 </div>
                 <div className="form-floating mb-3">
-                  <label className="py-2 text-[#FBC208]" htmlFor="photos01">Cover photo</label>
+                  <label className="py-2 text-[#FBC208]" htmlFor="photos01">Cover photo*</label>
                   <input onChange={handlePhotos01Change} placeholder="URL" required type="text" name="photos01" id="photos01" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
                 <div className="form-floating mb-3">
@@ -294,7 +300,7 @@ function NewWandrrrForm(props) {
                   <label className="py-2 text-[#FBC208]" htmlFor="photos05">Another photo</label>
                   <input onChange={handlePhotos05Change}  placeholder="URL" type="text" name="photos05" id="photos05" className="bg-[#FCFBE4] border-solid border-[#FBC208] border py-2 px-4 w-full rounded text-gray-700" />
                 </div>
-                <button className="mt-4 w-full bg-[#FBC208] hover:bg-[#FD8900] text-white border py-3 px-6 font-semibold text-md rounded" type="submit">WANDRRR</button>
+                <button className="mt-4 w-full bg-[#FBC208] hover:bg-[#FD8900] text-white border py-3 px-6 font-semibold text-md rounded" type="submit">Wandrrr!</button>
               </form>
         </div>
         </div>
