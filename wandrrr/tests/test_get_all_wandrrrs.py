@@ -6,9 +6,11 @@ from authenticator import authenticator
 
 client = TestClient(app)
 
+
 class TestWandrrrQueries:
     def get_all(self, owner_id):
         return [all_wandrrrs_test]
+
 
 all_wandrrrs_test = {
     "wandrrrs_id": 0,
@@ -31,6 +33,7 @@ all_wandrrrs_test = {
     "rating": "string"
 }
 
+
 test_account = {
     "id": 0,
     "first_name": "string",
@@ -40,8 +43,10 @@ test_account = {
     "password": "string"
 }
 
+
 def account_override():
     return test_account
+
 
 def test_get_all_wandrrrs():
     app.dependency_overrides[WandrrrRepository] = TestWandrrrQueries
