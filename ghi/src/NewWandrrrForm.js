@@ -28,23 +28,6 @@ function NewWandrrrForm(props) {
   const [photos05, setPhotos05] = useState('');
   const [rating, setRating] = useState('');
 
-  const [title, setTitle] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [location, setLocation] = useState('');
-  const [description, setDescription] = useState('');
-  const [mood, setMood] = useState('');
-  const [companion, setCompanion] = useState('');
-  const [companionDropdown, setCompanionDropdown] = useState('');
-  const [weather, setWeather] = useState('');
-  const [photos01, setPhotos01] = useState('');
-  const [photos02, setPhotos02] = useState('');
-  const [photos03, setPhotos03] = useState('');
-  const [photos04, setPhotos04] = useState('');
-  const [photos05, setPhotos05] = useState('');
-  const [rating, setRating] = useState('');
-
-
 
   const handleTitleChange = (event) => {
     const value = event.target.value;
