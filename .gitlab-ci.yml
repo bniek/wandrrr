@@ -46,6 +46,9 @@ api-unit-test-job:
     - lint-test-job
   before_script:
     - export DATABASE_URL=os.environ["DATABASE_URL"]
+    - export SIGNING_KEY=secret_key
+
+
   script:
     - cd wandrrr
     - pip install -r requirements.txt
