@@ -37,6 +37,7 @@ class CreateWandrrrRepository:
         result.update(wandrrr)
         return result
 
+
 test_account = {
     "id": 1,
     "first_name": "string",
@@ -46,6 +47,7 @@ test_account = {
     "password": "string"
 }
 
+
 def account_override():
     return test_account
 
@@ -54,7 +56,7 @@ def test_create_wandrrr():
     app.dependency_overrides[WandrrrRepository] = CreateWandrrrRepository
     app.dependency_overrides[
       authenticator.try_get_current_account_data
-      ]= account_override
+      ] = account_override
 
     json = {
         "owner_id": 1,
