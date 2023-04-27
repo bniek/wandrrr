@@ -134,6 +134,8 @@ function NewWandrrrForm() {
     };
     const response = await fetch(wandrrrUrl, fetchConfig);
     if (response.ok) {
+      const newWandrrr = await response.json();
+      console.log(newWandrrr);
 
       setTitle('');
       setStartDate('');
