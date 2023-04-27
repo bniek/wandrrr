@@ -247,8 +247,7 @@ function WandrrrDetail() {
         }}
       >
         <div align="center" className="wandrrrPost">
-          <h1
-            className=""
+          <h1 className="ml-4"
             style={{
               fontFamily: "Instrument Serif",
               fontSize: 70,
@@ -437,7 +436,6 @@ function WandrrrDetail() {
               <h2 className="text-sm">{wandrrr.description}</h2>
             </div>
           </div>
-
           <div className="relative">
             <div className="flex flex-row items-center my-24 justify-center">
               <button
@@ -469,13 +467,13 @@ function WandrrrDetail() {
                   <div className="flex flex-row gap-2 ">
                     <button
                       onClick={() => setOpen(!open)}
-                      className="flex-1 bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className="flex-1 bg-[#AFDAFE] text-white active:bg-neutral-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={() => deleteWandrrr(wandrrrs_id)}
-                      className="flex-1 bg-neutral-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className="flex-1 bg-[#AFDAFE] text-white active:bg-neautral-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     >
                       Delete
                     </button>

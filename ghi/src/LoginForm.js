@@ -49,7 +49,7 @@ function Login() {
             </h1>
           </div>
           <div className="form-floating mb-3">
-            <label className="py-2 text-[#FFFFFF]" htmlFor="username">Username*</label>
+            <label className="py-2 text-[#FFFFFF]" htmlFor="username">Username</label>
             <input
             onChange={handleFormChange}
             placeholder="Username"
@@ -62,7 +62,7 @@ function Login() {
             />
           </div>
           <div className="form-floating mb-3">
-            <label className="py-2 text-[#FFFFFF]" htmlFor="password">Password* </label>
+            <label className="py-2 text-[#FFFFFF]" htmlFor="password">Password</label>
             <input
             onChange={handleFormChange}
             placeholder="Password"
