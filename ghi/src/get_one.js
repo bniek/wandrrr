@@ -238,15 +238,17 @@ function WandrrrDetail() {
 
   return (
     <>
-      <div>
+      <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", paddingLeft: "8px" }}>
         <div align="center" className="wandrrrPost">
-          <h1
+          <h1 className=""
             style={{
-              fontSize: 60,
+              fontFamily: 'Instrument Serif',
+              fontSize: 70,
               fontWeight: "lighter",
               letterSpacing: "0.1em",
               display: "flex",
               flexDirection: "column",
+              alignItems: "center",
               justifyContent: "center",
               textTransform: "uppercase",
             }}
@@ -254,7 +256,7 @@ function WandrrrDetail() {
             {wandrrr.title}
           </h1>
 
-          <h2>
+          <h2 className="text-xs py-4">
             {new Date(wandrrr.start_date).toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
@@ -268,20 +270,16 @@ function WandrrrDetail() {
               })}`}
           </h2>
 
-          <h2>
-            {moods} {ratings} {weathers}
-          </h2>
-
-          <h2>{wandrrr.location}</h2>
-          <div align="center" className="carousel w-full rounded-box">
+          <div align="center" className="carousel" style={{ width: "700px" }}>
             <div id="slide1" className="carousel-item relative w-full">
               <img
-                style={{
-                  width: "auto",
-                  height: 600,
-                  display: "block",
-                  margin: "0 auto",
-                }}
+                  style={{
+                    width: "auto",
+                    height: 700,
+                    display: "block",
+                    margin: "0 auto",
+                    borderRadius: '15px'
+                  }}
                 src={wandrrr.photos01}
                 className="w-full"
                 alt="photo1"
@@ -298,9 +296,10 @@ function WandrrrDetail() {
                 <img
                   style={{
                     width: "auto",
-                    height: 600,
+                    height: 700,
                     display: "block",
                     margin: "0 auto",
+                    borderRadius: '15px'
                   }}
                   src={wandrrr.photos02}
                   className="w-full"
@@ -321,9 +320,10 @@ function WandrrrDetail() {
                 <img
                   style={{
                     width: "auto",
-                    height: 600,
+                    height: 700,
                     display: "block",
                     margin: "0 auto",
+                    borderRadius: '15px'
                   }}
                   src={wandrrr.photos03}
                   className="w-full"
@@ -344,9 +344,10 @@ function WandrrrDetail() {
                 <img
                   style={{
                     width: "auto",
-                    height: 600,
+                    height: 700,
                     display: "block",
                     margin: "0 auto",
+                    borderRadius: '15px'
                   }}
                   src={wandrrr.photos04}
                   className="w-full"
@@ -368,9 +369,10 @@ function WandrrrDetail() {
                 <img
                   style={{
                     width: "auto",
-                    height: 600,
+                    height: 700,
                     display: "block",
                     margin: "0 auto",
+                    borderRadius: '15px'
                   }}
                   src={wandrrr.photos05}
                   className="w-full"
@@ -387,18 +389,41 @@ function WandrrrDetail() {
               </div>
             )}
           </div>
-
-          <div>
-            <h2>{wandrrr.description}</h2>
-            <h2>
-              {companions} {wandrrr.companion}
-            </h2>
+          <div class="flex justify-center flex-wrap gap-2 py-5">
+            {wandrrr.location && (
+              <span class="text-sm inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium text-[#FFFFFF] bg-[#AFDAFE]">
+                {wandrrr.location}
+              </span>
+            )}
+            {(companions || wandrrr.companion) && (
+              <span class="text-sm inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium text-[#FFFFFF] bg-[#AFDAFE]">
+                With {companions} {wandrrr.companion}
+              </span>
+            )}
+            {moods && (
+              <span class="text-sm inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium text-[#FFFFFF] bg-[#AFDAFE]">
+                Mood: {moods}
+              </span>
+            )}
+            {weathers && (
+              <span class="text-sm inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium text-[#FFFFFF] bg-[#AFDAFE]">
+                Weather: {weathers}
+              </span>
+            )}
+            {ratings && (
+              <span class="text-sm inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-[#AFDAFE]">
+                {ratings}
+              </span>
+            )}
           </div>
-
-
+          <div style={{ maxWidth: "500px", margin: "0 auto" }}>
+            <div className="py-5" style={{ textAlign: "left", width: "100%", maxWidth: "650px", paddingLeft: "8px" }}>
+              <h2 className="text-sm">{wandrrr.description}</h2>
+            </div>
+          </div>
           <div className="relative">
             <div className="flex flex-col items-center my-24">
-                <button onClick={() => setOpen(!open)} className="bg-neutral-400 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Delete</button>
+                <button onClick={() => setOpen(!open)} className="bg-neutral-400 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Delete</button>
             </div>
             {open ? <Modal>
                 <div className="flex flex-col gap-2 bg-white px-6 pb-6 py-2 rounded-lg">
@@ -409,7 +434,7 @@ function WandrrrDetail() {
                     </div>
                     <hr/>
                     <div className="flex flex-row gap-2 ">
-                        <button onClick={() => setOpen(!open)} className="flex-1 bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Cancel</button>
+                        <button onClick={() => setOpen(!open)} className="flex-1 bg-[#AFDAFE] text-white active:bg-neutral-400 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Cancel</button>
                         <button onClick={() => deleteWandrrr(wandrrrs_id)} className="flex-1 bg-neutral-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Delete</button>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ function Nav() {
     <div className="navbar p-5 bg-base-100 relative">
       <div className="flex-1">
         <div className="hover:bg-primary btn btn-ghost normal-case text-xl">
-          Wandrrr
+          <NavLink to="/wandrrrs">Wandrrr</NavLink>
         </div>
       </div>
       <div className="flex-none">
@@ -26,8 +26,8 @@ function Nav() {
                 <NavLink to="/wandrrrs">My Wandrrrs</NavLink>
               </li>
               <li tabIndex={0}>
-                <div>
-                  {user.username}
+                <div className="font-extrabold ">
+                  <p className="text-[#AFDAFE]">{user.username}</p>
                   <svg
                     className="fill-current"
                     xmlns="http://www.w3.org/2000/svg"
