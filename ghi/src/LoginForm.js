@@ -30,9 +30,6 @@ function Login() {
     }
   };
 
-  // if (token != null) {
-  //   window.location.href = "/wandrrrs";
-  // }
 
   const { username = "", password = "" } = formData;
   return (
