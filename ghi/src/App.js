@@ -1,10 +1,6 @@
-// import { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
-// import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 import Auth from "./Auth.js";
-import "./App.css";
-// import useUser from "./useUser";
 import Login from "./LoginForm.js";
 import Nav from "./Nav";
 import WandrrrDetail from "./get_one";
@@ -15,9 +11,6 @@ import WandrrrsList from "./WandrrrsList.js";
 import LandingPage from "./LandingPage.js";
 
 function App() {
-  // const { token } = useContext(AuthContext);
-  // const user = useUser(token);
-
   const domain = /https:\/\/[^/]+/;
   const basename = process.env.PUBLIC_URL.replace(domain, "");
 
@@ -27,9 +20,7 @@ function App() {
         <AuthProvider
           tokenUrl={`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`}
         >
-          {/* <Nav user={user} /> */}
           <Nav />
-
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/signup" element={<Auth />} />

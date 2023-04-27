@@ -36,4 +36,7 @@ class MyAuthenticator(Authenticator):
 expiration = timedelta(hours=72)
 
 # # Use your private and public keys in the authenticator
-authenticator = MyAuthenticator(os.environ["SIGNING_KEY"])
+authenticator = MyAuthenticator(
+    os.environ["SIGNING_KEY"],
+    exp=expiration,
+)

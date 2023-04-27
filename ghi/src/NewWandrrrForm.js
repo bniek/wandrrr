@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { AuthContext } from '@galvanize-inc/jwtdown-for-react';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './form.css';
 import useUser from "./useUser";
 
 
@@ -11,9 +10,6 @@ function NewWandrrrForm() {
   const { token } = useContext (AuthContext);
   const currentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
   const user = useUser(token);
-
-
-
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -160,9 +156,7 @@ function NewWandrrrForm() {
     }
   };
 
-  // useEffect(() => {
-  //     fetchData();
-  // }, []);
+
     return (
       <div className="contain">
         <div className="m-auto py-20">
