@@ -12,7 +12,7 @@ These wireframes were developed based on the key flow we had mapped out.
 
 ## User Sign up
 <br>
-![Sign up page](wireframes/SignUp.png)
+![Sign up page](wireframes/Signup.png)
 
 
 ## User Log in
