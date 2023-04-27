@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 
-const BASE_URL = "http://localhost:8000"; // replace with backend API base URL
+const BASE_URL = "https://wandrrr-fast-api.dec-pt-1.mod3projects.com"; // replace with backend API base URL
 
 // const getPost = async (wandrrrs_id, token) => {
 //   const response = await fetch(`${BASE_URL}/wandrrrs/${wandrrrs_id}`, {
