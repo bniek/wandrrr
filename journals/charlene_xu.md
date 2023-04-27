@@ -12,17 +12,21 @@
 
 ### (Thur) 4/27/2023
 
--
+- Finished readme and journal
 
 ### (Wed) 4/26/2023
 
 - Fixed backend pipeline with Jon
 - Debug Bennie's unit test for create with Rosheen
+- All unit tests passed the pipeline
+- Styled the Login form
+- Cleaned up some unused codes
+- Recreated database due to migration error
 
 ### (Tue) 4/25/2023
 
 - Finished unit test for get_all_wandrrrs
-- Debugged as a group for backend service failed in deployment
+- Fixed backend service in deployment as a group
 
 ### (Mon) 4/24/2023
 
