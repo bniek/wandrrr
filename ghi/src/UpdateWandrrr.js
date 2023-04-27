@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 const BASE_URL = "http://localhost:8000"; // replace with backend API base URL
@@ -38,10 +38,14 @@ function UpdateWandrrr(props) {
       setOwnerId(data.id);
     }
   };
+
+  const navigate = useNavigate();
+
+  const { state } = useLocation();
+
   // console.log(useParams());
 
   // const { id } = useParams();
-  const queryParams = new URLSearchParams(window.location.search);
 
   // const [setPost] = useState({});
   const [formValues, setFormValues] = useState({});
@@ -70,14 +74,32 @@ function UpdateWandrrr(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const id = queryParams.get("id");
-    await updatePost(id, formValues, token); // send the updated post data to the server
+    await updatePost(formValues.wandrrrs_id, formValues, token); // send the updated post data to the server
     // redirect here to whichever page you want
+    navigate(`/wandrrrs/${formValues.wandrrrs_id}`);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchWandrrrDetails = async () => {
+      const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/wandrrrs/${state.id}`;
+      const response = await fetch(url, { credentials: "include" });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+
+        setFormValues(data);
+      } else {
+        window.location.href = "/error";
+      }
+    };
+
+    if (state.id) fetchWandrrrDetails();
+  }, [state]);
 
   return (
     <div className="m-auto py-20">
@@ -106,7 +128,7 @@ function UpdateWandrrr(props) {
             Start date
           </label>
           <input
-            value={formValues.stateDate}
+            value={formValues.start_date}
             onChange={handleChange}
             required
             type="date"
@@ -118,7 +140,7 @@ function UpdateWandrrr(props) {
         <div className="form-floating mb-3">
           <label htmlFor="end_date">End date </label>
           <input
-            value={formValues.endDate}
+            value={formValues.end_date}
             onChange={handleChange}
             type="date"
             name="end_date"
@@ -194,7 +216,7 @@ function UpdateWandrrr(props) {
         </div>
         <div className="form-floating mb-3">
           <select
-            value={formValues.companionDropdown}
+            value={formValues.companion_dropdown}
             onChange={handleChange}
             id="companion_dropdown"
             name="companion_dropdown"
