@@ -66,7 +66,6 @@ function UpdateWandrrr(props) {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
 
         setFormValues(data);
       } else {
@@ -89,7 +88,7 @@ function UpdateWandrrr(props) {
         </div>
         <div>
           <label className="py-2 text-[#FFFFFF]" htmlFor="title">
-            Title
+            Title*
           </label>
           <input
             value={formValues.title}
@@ -104,7 +103,7 @@ function UpdateWandrrr(props) {
 
         <div className="form-floating mb-3">
           <label className="py-2 text-[#FFFFFF]" htmlFor="start_date">
-            Start date
+            Start date*
           </label>
           <input
             value={formValues.start_date}
@@ -117,7 +116,7 @@ function UpdateWandrrr(props) {
           />
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="end_date">End date </label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="end_date">End date*</label>
           <input
             value={formValues.end_date}
             onChange={handleChange}
@@ -128,7 +127,7 @@ function UpdateWandrrr(props) {
           />
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="location">Location</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="location">Location*</label>
           <input
             value={formValues.location}
             onChange={handleChange}
@@ -140,7 +139,7 @@ function UpdateWandrrr(props) {
           />
         </div>
         <div className="mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="Description">Description</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="Description">Description*</label>
           <textarea
             value={formValues.description}
             onChange={handleChange}

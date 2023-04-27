@@ -31,7 +31,6 @@ function WandrrrDetail() {
   const [weathers, setWeathers] = useState("");
 
   const routeChange = (path, props) => {
-    console.log(path, props);
     navigate(path, { state: props });
   };
 
