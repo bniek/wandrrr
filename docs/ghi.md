@@ -22,7 +22,8 @@
 
 ## Create a Wandrrr Page
 
-![Create Page](ghi/create.png)
+![Create Page](ghi/create1.png)
+![Create Page](ghi/create2.png)
 
 ## Detail Wandrrr Page
 
@@ -30,4 +31,5 @@
 
 ## Edit a Wandrrr Page
 
-![Edit Page](ghi/edit.png)
+![Edit Page](ghi/edit1.png)
+![Edit Page](ghi/edit2.png)
