@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import Auth from "./Auth.js";
-import "./App.css";
 import Login from "./LoginForm.js";
 import Nav from "./Nav";
 import WandrrrDetail from "./get_one";
@@ -22,7 +21,6 @@ function App() {
           tokenUrl={`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`}
         >
           <Nav />
-
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/signup" element={<Auth />} />
