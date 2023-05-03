@@ -1,6 +1,8 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import loginBg from "./images/loginBg.jpg"
+
 
 function Auth() {
   const [formData, setFormData] = useState({});
@@ -36,7 +38,6 @@ function Auth() {
 
   };
 
-
   const {
     first_name = "",
     last_name = "",
@@ -44,11 +45,13 @@ function Auth() {
     username = "",
     password = "",
   } = formData;
+
   return (
-    <div className="mb-10">
-      <div className="mx-auto py-15"></div>
-      <form
-        className="bg-[#AFDAFE] g-gray-100 rounded-lg shadow-lg max-w-xl m-auto py-10 mt-10 px-12 border"
+    <div className="min-h-screen" style={{backgroundImage: `url(${loginBg})`, backgroundSize: "cover"}}>
+      <div className="flex justify-center items-center h-full pt-72" >
+        <form
+        className="bg-[#A6D9F7] max-w-[500px] w-full mx-auto p-8 shadow-xl rounded-lg"
+        style={{opacity: 0.8}}
         onSubmit={handleSubmit}
         id="signup-form"
       >
@@ -130,6 +133,7 @@ function Auth() {
         </div>
         </form>
       </div>
+    </div>
   );
 }
 
