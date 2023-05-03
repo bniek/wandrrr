@@ -191,10 +191,10 @@ function LandingPage() {
         <section className="py-6 dark:bg-gray-800">
             <div className="container flex flex-col justify-center p-4 mx-auto pb-12">
                 <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 sm:grid-cols-2">
-                    <img className="object-cover w-full dark:bg-gray-500 aspect-square" src="https://images.pexels.com/photos/16047136/pexels-photo-16047136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
-                    <img className="object-cover w-full dark:bg-gray-500 aspect-square" src="https://images.pexels.com/photos/3889986/pexels-photo-3889986.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
-                    <img className="object-cover w-full dark:bg-gray-500 aspect-square" src="https://images.pexels.com/photos/4171211/pexels-photo-4171211.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
-                    <img className="object-cover w-full dark:bg-gray-500 aspect-square" src="https://images.pexels.com/photos/2422259/pexels-photo-2422259.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
+                    <img className="object-cover w-full dark:bg-gray-500 aspect-square" src="https://images.pexels.com/photos/16047136/pexels-photo-16047136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""/>
+                    <img className="object-cover w-full dark:bg-gray-500 aspect-square" src="https://images.pexels.com/photos/3889986/pexels-photo-3889986.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""/>
+                    <img className="object-cover w-full dark:bg-gray-500 aspect-square" src="https://images.pexels.com/photos/4171211/pexels-photo-4171211.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""/>
+                    <img className="object-cover w-full dark:bg-gray-500 aspect-square" src="https://images.pexels.com/photos/2422259/pexels-photo-2422259.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""/>
                 </div>
             </div>
         </section>
