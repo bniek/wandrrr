@@ -4,8 +4,6 @@ import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 const BASE_URL = "https://wandrrr-fast-api.dec-pt-1.mod3projects.com"; // replace with backend API base URL
 
-
-
 const updatePost = async (wandrrrs_id, post, token) => {
   const response = await fetch(`${BASE_URL}/wandrrrs/${wandrrrs_id}`, {
     method: "PUT",
@@ -36,7 +34,6 @@ function UpdateWandrrr(props) {
   const { state } = useLocation();
 
   const [formValues, setFormValues] = useState({});
-
 
   const handleOwnerIdChange = (event) => {
     const value = event.target.value;
@@ -84,7 +81,12 @@ function UpdateWandrrr(props) {
         id="update-wandrrr-form"
       >
         <div className="form-floating mb-3 py-20">
-          <h1 className="text-6xl text-[#FFFFFF] text-center" style={{ fontFamily: 'Instrument Serif' }}>Make changes!</h1>
+          <h1
+            className="text-6xl text-[#FFFFFF] text-center"
+            style={{ fontFamily: "Instrument Serif" }}
+          >
+            Make changes!
+          </h1>
         </div>
         <div>
           <label className="py-2 text-[#FFFFFF]" htmlFor="title">
@@ -116,7 +118,9 @@ function UpdateWandrrr(props) {
           />
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="end_date">End date*</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="end_date">
+            End date*
+          </label>
           <input
             value={formValues.end_date}
             onChange={handleChange}
@@ -127,7 +131,9 @@ function UpdateWandrrr(props) {
           />
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="location">Location*</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="location">
+            Location*
+          </label>
           <input
             value={formValues.location}
             onChange={handleChange}
@@ -139,7 +145,9 @@ function UpdateWandrrr(props) {
           />
         </div>
         <div className="mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="Description">Description*</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="Description">
+            Description*
+          </label>
           <textarea
             value={formValues.description}
             onChange={handleChange}
@@ -151,7 +159,9 @@ function UpdateWandrrr(props) {
           ></textarea>
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="mood">Mood</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="mood">
+            Mood
+          </label>
           <select
             value={formValues.mood}
             onChange={handleChange}
@@ -182,7 +192,9 @@ function UpdateWandrrr(props) {
           </select>
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="companion">Companions</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="companion">
+            Companions
+          </label>
           <input
             value={formValues.companion}
             onChange={handleChange}
@@ -227,7 +239,9 @@ function UpdateWandrrr(props) {
           </select>
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="weather">Weather</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="weather">
+            Weather
+          </label>
           <select
             value={formValues.weather}
             onChange={handleChange}
@@ -247,7 +261,9 @@ function UpdateWandrrr(props) {
           </select>
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="rating">Rating</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="rating">
+            Rating
+          </label>
           <select
             value={formValues.rating}
             onChange={handleChange}
@@ -265,7 +281,9 @@ function UpdateWandrrr(props) {
         </div>
 
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="photos01">Cover photo</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="photos01">
+            Cover photo
+          </label>
           <input
             value={formValues.photos01}
             onChange={handleChange}
@@ -278,7 +296,9 @@ function UpdateWandrrr(props) {
           />
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="photos02">Another photo</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="photos02">
+            Another photo
+          </label>
           <input
             value={formValues.photos02}
             onChange={handleChange}
@@ -290,7 +310,9 @@ function UpdateWandrrr(props) {
           />
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="photos03">Another photo</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="photos03">
+            Another photo
+          </label>
           <input
             value={formValues.photos03}
             onChange={handleChange}
@@ -302,7 +324,9 @@ function UpdateWandrrr(props) {
           />
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="photos04">Another photo</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="photos04">
+            Another photo
+          </label>
           <input
             value={formValues.photos04}
             onChange={handleChange}
@@ -314,7 +338,9 @@ function UpdateWandrrr(props) {
           />
         </div>
         <div className="form-floating mb-3">
-          <label className="py-2 text-[#FFFFFF]" htmlFor="photos05">Another photo</label>
+          <label className="py-2 text-[#FFFFFF]" htmlFor="photos05">
+            Another photo
+          </label>
           <input
             value={formValues.photos05}
             onChange={handleChange}

@@ -15,7 +15,11 @@ function Nav() {
     <div className="navbar p-5 bg-base-100 relative">
       <div className="flex-1">
         <div className="hover:bg-primary btn btn-ghost normal-case text-xl">
+          {token ? (
           <NavLink to="/wandrrrs">Wandrrr</NavLink>
+          ) : (
+          <NavLink to="/">Wandrrr</NavLink>
+          )}
         </div>
       </div>
       <div className="flex-none">
